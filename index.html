@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Master | Premium Portal</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      // الإعدادات الخاصة بك من الصورة
+      const firebaseConfig = {
+        apiKey: "AIzaSyCdgxEgVUfoCCiiEYJJZAAdpSNnAsgDLYQ",
+        authDomain: "vpsapp-803b0.firebaseapp.com",
+        projectId: "vpsapp-803b0",
+        storageBucket: "vpsapp-803b0.firebasestorage.app",
+        messagingSenderId: "460318898781",
+        appId: "1:460318898781:web:c19655037d97c988486bb4",
+        measurementId: "G-8LEY5MQXT0"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      window.db = getFirestore(app);
+      window.auth = getAuth(app);
+      window.fs = { collection, addDoc, onSnapshot, doc, updateDoc, query, orderBy };
+      window.fbAuth = { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut };
+    </script>
+</head>
+<body class="bg-[#020202] text-white selection:bg-blue-500/30 font-sans">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [user, setUser] = useState(null);
+            const [showPaymentModal, setShowPaymentModal] = useState(false);
+            const [orders, setOrders] = useState([]);
+            const [authData, setAuthData] = useState({ email: '', password: '', mode: 'login' });
+
+            // بيانات التليجرام والعملات
+            const BOT_TOKEN = "8000846939:AAEyKJAbkAKKO2-xyYytF3a9O03544YF-F0";
+            const CHAT_ID = "YOUR_CHAT_ID"; // ضع الـ ID الخاص بك هنا
+
+            const plans = [
+                { name: 'Starter', price: 10, specs: { cpu: '4 vCore', ram: '8GB DDR4', disk: '75GB NVMe', port: '1 Gbps' } },
+                { name: 'Value', price: 15, specs: { cpu: '6 vCore', ram: '12GB DDR4', disk: '100GB NVMe', port: '2 Gbps' } },
+                { name: 'Essential', price: 20, specs: { cpu: '8 vCore', ram: '24GB DDR4', disk: '200GB NVMe', port: '2 Gbps' } }
+            ];
+
+            const [selection, setSelection] = useState({ location: '', plan: null, os: '', txHash: '', notes: '' });
+
+            useEffect(() => {
+                const unsub = window.fbAuth.onAuthStateChanged(window.auth, (u) => setUser(u));
+                return () => unsub();
+            }, []);
+
+            const handleAuth = async () => {
+                try {
+                    if(authData.mode === 'login') await window.fbAuth.signInWithEmailAndPassword(window.auth, authData.email, authData.password);
+                    else await window.fbAuth.createUserWithEmailAndPassword(window.auth, authData.email, authData.password);
+                } catch (e) { alert("تأكد من تفعيل Email Auth في Firebase: " + e.message); }
+            };
+
+            const submitOrder = async () => {
+                const orderData = { ...selection, user: user.email, timestamp: new Date().toISOString(), status: 'Pending' };
+                await window.fs.addDoc(window.fs.collection(window.db, "orders"), orderData);
+                // إرسال إشعار تليجرام
+                const msg = `🚀 طلب جديد!\n👤 العميل: ${user.email}\n📦 الخطة: ${selection.plan.name}\n⚙️ النظام: ${selection.os}\n💰 الهاش: ${selection.txHash}`;
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`);
+                alert("تم إرسال الطلب بنجاح!");
+                setShowPaymentModal(false);
+            };
+
+            if (!user) {
+                return (
+                    <div className="min-h-screen flex items-center justify-center bg-black">
+                        <div className="bg-[#0a0a0a] border border-zinc-900 p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl">
+                            <h2 className="text-3xl font-black text-center mb-8 uppercase italic tracking-tighter">
+                                {authData.mode === 'login' ? 'Login Portal' : 'Signup Portal'}
+                            </h2>
+                            <input type="email" placeholder="Email" className="w-full bg-[#050505] border border-zinc-900 p-4 rounded-2xl mb-4 outline-none focus:border-blue-500" onChange={e => setAuthData({...authData, email: e.target.value})} />
+                            <input type="password" placeholder="Password" className="w-full bg-[#050505] border border-zinc-900 p-4 rounded-2xl mb-8 outline-none focus:border-blue-500" onChange={e => setAuthData({...authData, password: e.target.value})} />
+                            <button onClick={handleAuth} className="w-full py-4 bg-blue-600 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Submit</button>
+                            <p onClick={() => setAuthData({...authData, mode: authData.mode === 'login' ? 'signup' : 'login'})} className="text-center mt-6 text-zinc-600 text-sm cursor-pointer hover:text-white transition-colors">
+                                {authData.mode === 'login' ? "Don't have an account? Sign up" : "Already have an account? Login"}
+                            </p>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="min-h-screen p-6">
+                    <header className="max-w-6xl mx-auto flex justify-between items-center mb-20 border-b border-zinc-900 pb-6">
+                        <h1 className="text-2xl font-black italic text-blue-500">CLOUD MASTER</h1>
+                        <button onClick={() => window.fbAuth.signOut(window.auth)} className="text-xs font-bold text-zinc-500 uppercase hover:text-red-500">Sign Out</button>
+                    </header>
+
+                    <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+                        {plans.map(p => (
+                            <div key={p.name} className="bg-[#0a0a0a] border border-zinc-900 p-8 rounded-[3rem] flex flex-col items-center hover:border-blue-500 transition-all group relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 blur-3xl rounded-full"></div>
+                                <h3 className="text-2xl font-black text-white mb-6 uppercase italic tracking-tighter">{p.name}</h3>
+                                <div className="w-full space-y-4 mb-10 text-center text-sm font-bold text-zinc-400">
+                                    <p className="py-2 border-b border-zinc-900/50">⚡ {p.specs.cpu} Processor</p>
+                                    <p className="py-2 border-b border-zinc-900/50">🧠 {p.specs.ram} RAM</p>
+                                    <p className="py-2 border-b border-zinc-900/50">💾 {p.specs.disk} Storage</p>
+                                    <p className="py-2">🌐 {p.specs.port} Network Port</p>
+                                </div>
+                                <div className="text-5xl font-black mb-10 italic tracking-tighter">${p.price}</div>
+                                <button onClick={() => {setSelection({...selection, plan: p}); setShowPaymentModal(true);}} className="w-full py-4 bg-white text-black rounded-2xl font-black uppercase tracking-widest group-hover:bg-blue-600 group-hover:text-white transition-all">Configure Now</button>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Payment Modal (النافذة المنفصلة) */}
+                    {showPaymentModal && (
+                        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-6 z-[100] animate-in fade-in duration-300">
+                            <div className="bg-[#0a0a0a] border border-zinc-900 p-10 rounded-[3rem] w-full max-w-lg shadow-[0_0_50px_rgba(0,0,0,0.5)] relative">
+                                <button onClick={() => setShowPaymentModal(false)} className="absolute top-6 right-8 text-zinc-500 hover:text-white text-2xl font-bold">×</button>
+                                <h2 className="text-2xl font-black mb-8 italic uppercase text-blue-500 tracking-tighter">Confirm Configuration</h2>
+                                <div className="space-y-6">
+                                    <div>
+                                        <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2 block">Choose Location</label>
+                                        <select className="w-full bg-[#050505] border border-zinc-900 p-4 rounded-2xl outline-none" onChange={e => setSelection({...selection, location: e.target.value})}>
+                                            <option value="">Select Region</option>
+                                            <option value="France">France</option>
+                                            <option value="Germany">Germany</option>
+                                            <option value="Poland">Poland</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-2 block">Transaction Hash (TXID)</label>
+                                        <input type="text" placeholder="Paste Hash Here" className="w-full bg-[#050505] border border-zinc-900 p-4 rounded-2xl outline-none" onChange={e => setSelection({...selection, txHash: e.target.value})} />
+                                    </div>
+                                    <textarea placeholder="Leave any notes here..." className="w-full bg-[#050505] border border-zinc-900 p-4 rounded-2xl h-24 text-sm" onChange={e => setSelection({...selection, notes: e.target.value})}></textarea>
+                                    <button onClick={submitOrder} className="w-full py-5 bg-blue-600 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-blue-500/20">Finalize & Place Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
