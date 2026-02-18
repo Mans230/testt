@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support | RDP.cheap</title>
+  <style>
+    :root{--bg:#f3f6fb;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--shadow:0 14px 35px rgba(15,23,42,.08);--radius:18px;--blue:#2563eb;--blue2:#1d4ed8;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 18px}
+
+    .nav{margin:22px auto 0;background:#fff;border:1px solid rgba(226,232,240,.8);border-radius:999px;box-shadow:0 10px 30px rgba(2,6,23,.06);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900}
+    .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 10px 25px rgba(37,99,235,.25);position:relative}
+    .logo:after{content:"";position:absolute;inset:7px;border-radius:8px;background:rgba(255,255,255,.22)}
+    .brand span b{color:var(--blue)}
+    .links{display:flex;align-items:center;gap:18px;color:var(--muted);font-weight:600;font-size:14px}
+    .links a{padding:8px 10px;border-radius:999px}
+    .links a:hover{background:#f1f5f9;color:var(--text)}
+    .actions{display:flex;align-items:center;gap:10px}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 16px;border-radius:999px;font-weight:800;cursor:pointer}
+    .btn.primary{border-color:transparent;background:var(--blue);color:#fff;box-shadow:0 12px 26px rgba(37,99,235,.22)}
+    .btn.primary:hover{background:var(--blue2)}
+
+    header{padding:26px 0 10px;text-align:center}
+    h1{margin:0;font-size:34px;letter-spacing:-.4px}
+    p.sub{margin:10px auto 0;color:var(--muted);max-width:760px;line-height:1.7;font-weight:600;font-size:14px}
+
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;padding:18px 0 34px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 10px 26px rgba(2,6,23,.04);padding:20px}
+    .card h2{margin:0 0 10px;font-size:18px}
+
+    form{margin-top:6px}
+    .field{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+    label{font-size:12px;color:var(--muted);font-weight:900}
+    input,select,textarea{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      background:#f8fafc;
+      outline:none;
+      font-weight:700;
+    }
+    textarea{min-height:120px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:rgba(37,99,235,.55);box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+    .send{margin-top:14px;width:100%;border:0;border-radius:14px;padding:12px 14px;background:var(--blue);color:#fff;font-weight:1000;cursor:pointer}
+    .send:hover{background:var(--blue2)}
+    .hint{margin-top:10px;color:var(--muted);font-weight:700;font-size:12px;line-height:1.7}
+
+    .box{display:flex;flex-direction:column;gap:12px}
+    .item{
+      display:flex;gap:12px;align-items:flex-start;
+      padding:14px;border-radius:16px;background:#f8fafc;border:1px solid rgba(226,232,240,.9);
+      transition:.15s ease;
+    }
+    .item:hover{transform:translateY(-2px);background:#f3f6fb}
+    .item.click{cursor:pointer}
+    .icon{width:40px;height:40px;border-radius:14px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:grid;place-items:center;font-weight:1000;color:var(--blue)}
+    .item b{display:block;margin-bottom:4px}
+    .item small{color:var(--muted);font-weight:700;line-height:1.6}
+
+    footer{padding:22px 0 34px;color:var(--muted);font-weight:700;font-size:13px}
+    .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid rgba(226,232,240,.9);padding-top:14px}
+
+    /* Floating Telegram button */
+    .tg-float{
+      position:fixed;
+      left:18px;
+      bottom:18px;
+      z-index:9999;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      background:#eaf2ff;
+      border:1px solid rgba(37,99,235,.22);
+      box-shadow:0 14px 35px rgba(2,6,23,.14);
+      font-weight:1000;
+    }
+    .tg-float:hover{filter:brightness(.98)}
+    .tg-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .links{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="index.html"><span class="logo"></span><span>RDP<b>.cheap</b></span></a>
+      <nav class="links">
+        <a href="index.html">الخطط</a>
+        <a href="support.html">الدعم</a>
+        <a href="faq.html">الأسئلة الشائعة</a>
+        <a href="tos.html">TOS</a>
+      </nav>
+      <div class="actions">
+        <a class="btn" href="faq.html">FAQ</a>
+
+      </div>
+    </div>
+
+    <header>
+      <h1>الدعم</h1>
+      <p class="sub">ابعت تذكرة دعم (Tickets) + تواصل فوري عبر Live Chat أو Telegram.</p>
+    </header>
+
+    <section class="grid">
+      <!-- Ticket form -->
+      <div class="card">
+        <h2>فتح تذكرة دعم</h2>
+
+        <!-- ✅ Formspree endpoint بتاعك -->
+        <form action="https://formspree.io/f/xeeledyg" method="POST">
+          <div class="field">
+            <label>الاسم</label>
+            <input name="name" required />
+          </div>
+
+          <div class="field">
+            <label>البريد الإلكتروني</label>
+            <input type="email" name="email" required />
+          </div>
+
+          <div class="field">
+            <label>القسم</label>
+            <select name="department">
+              <option>Billing</option>
+              <option>Technical</option>
+              <option>Sales</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>الرسالة</label>
+            <textarea name="message" placeholder="اكتب المشكلة بالتفصيل..." required></textarea>
+          </div>
+
+          <button class="send" type="submit">إرسال</button>
+          <div class="hint">نصيحة: اذكر رقم الطلب + IP + لقطة من الخطأ لو المشكلة تقنية.</div>
+        </form>
+      </div>
+
+      <!-- Contact channels -->
+      <div class="card">
+        <h2>قنوات التواصل</h2>
+
+        <div class="box">
+          <div class="item">
+            <div class="icon">✉</div>
+            <div>
+              <b>Email</b>
+              <small>support@example.com<br/>الرد غالبًا خلال 1–12 ساعة.</small>
+            </div>
+          </div>
+
+          <!-- ✅ Live chat opens tawk widget -->
+          <div class="item click" onclick="openLiveChat()">
+            <div class="icon">💬</div>
+            <div>
+              <b>Live Chat</b>
+              <small>اضغط هنا لفتح الشات مباشرة.</small>
+            </div>
+          </div>
+
+          <!-- ✅ Telegram link (غيّر اليوزر) -->
+          <a class="item" href="https://t.me/hostrdp" target="_blank" rel="noopener">
+            <div class="icon">📨</div>
+            <div>
+              <b>Telegram</b>
+              <small>اضغط لفتح محادثة تليجرام.</small>
+            </div>
+          </a>
+
+          <div class="item">
+            <div class="icon">⚡</div>
+            <div>
+              <b>حالات عاجلة</b>
+              <small>اذكر رقم الطلب + الـIP + لقطة من الخطأ.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>© 2026 hostrdp</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="index.html">الخطط</a>
+          <a href="faq.html">FAQ</a>
+          <a href="tos.html">TOS</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Floating Telegram button (اختياري) -->
+  <a class="tg-float" href="https://t.me/hostrdp" target="_blank" rel="noopener" title="Telegram Support">
+    <span class="tg-dot"></span>
+    <span>دعم تليجرام</span>
+  </a>
+
+  <!-- ✅ Tawk.to script: الأفضل يكون قبل </body> -->
+  <script>
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/698cf1b852a8d51c3f6996c6/1jh790e42';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+
+    function openLiveChat(){
+      // يفتح نافذة الشات لو widget اتحمّل
+      if (window.Tawk_API && typeof window.Tawk_API.maximize === "function") {
+        window.Tawk_API.maximize();
+      } else {
+        alert("الشات لسه بيحمّل… جرّب بعد ثانيتين.");
+      }
+    }
+  </script>
+</body>
+</html>
