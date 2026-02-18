@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Plans | RDP.cheap - خطط RDP احترافية</title>
+  <meta name="description" content="احصل على RDP سريع وموثوق مع IP مخصص، حماية DDoS، ودعم 24/7. خطط تبدأ من $10 شهرياً">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <!-- Navigation -->
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <span class="logo"></span>
+        <span>RDP<b>.cheap</b></span>
+      </a>
+
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="links" id="mainNav">
+        <a href="index.html">الخطط</a>
+        <a href="support.html">الدعم</a>
+        <a href="faq.html">FAQ</a>
+        <a href="tos.html">TOS</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn" href="support.html">تواصل</a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1 class="title">خطط RDP احترافية</h1>
+      <p class="subtitle">
+        احصل على RDP سريع وموثوق مع IP مخصص، تخزين NVMe، وحماية DDoS
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">99.9%</div>
+          <div class="stat-label">وقت التشغيل</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">دعم فني</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">موقع عالمي</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5K+</div>
+          <div class="stat-label">عميل راضي</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Cards -->
+    <section class="grid">
+      <article class="card" data-plan="silver" data-price="10" data-stock="available">
+        <h3 class="plan">Silver</h3>
+        <p class="desc">مثالي للمبتدئين</p>
+        <div class="price-wrap">
+          <div class="price">$10 <span class="per">/شهر</span></div>
+        </div>
+        <button class="select" onclick="openModal('Silver', 10)">اختر الخطة</button>
+
+        <ul class="list">
+          <li><span class="check">✓</span> 4 أنوية معالج</li>
+          <li><span class="check">✓</span> 8GB RAM</li>
+          <li><span class="check">✓</span> 75GB NVMe</li>
+          <li><span class="check">✓</span> باندويث لا محدود</li>
+          <li><span class="check">✓</span> منفذ 400Mbps</li>
+        </ul>
+      </article>
+
+      <article class="card" data-plan="silver-plus" data-price="13" data-stock="available">
+        <h3 class="plan">Silver+</h3>
+        <p class="desc">قوة أكبر، قيمة أفضل</p>
+        <div class="price-wrap">
+          <div class="price">$13 <span class="per">/شهر</span></div>
+        </div>
+        <button class="select" onclick="openModal('Silver+', 13)">اختر الخطة</button>
+
+        <ul class="list">
+          <li><span class="check">✓</span> 6 أنوية معالج</li>
+          <li><span class="check">✓</span> 12GB RAM</li>
+          <li><span class="check">✓</span> 100GB NVMe</li>
+          <li><span class="check">✓</span> باندويث لا محدود</li>
+          <li><span class="check">✓</span> منفذ 1Gbps</li>
+        </ul>
+      </article>
+
+      <article class="card" data-plan="gold" data-price="20" data-stock="available">
+        <h3 class="plan">Gold</h3>
+        <p class="desc">للمشاريع المتنامية</p>
+        <div class="price-wrap">
+          <div class="price">$20 <span class="per">/شهر</span></div>
+        </div>
+        <button class="select" onclick="openModal('Gold', 20)">اختر الخطة</button>
+
+        <ul class="list">
+          <li><span class="check">✓</span> 8 أنوية معالج</li>
+          <li><span class="check">✓</span> 24GB RAM</li>
+          <li><span class="check">✓</span> 200GB NVMe</li>
+          <li><span class="check">✓</span> باندويث لا محدود</li>
+          <li><span class="check">✓</span> منفذ 1.5Gbps</li>
+        </ul>
+      </article>
+
+      <article class="card featured" data-plan="platinum" data-price="30" data-stock="available">
+        <div class="badge">الأكثر شعبية</div>
+        <h3 class="plan">Platinum</h3>
+        <p class="desc">الخيار الأمثل</p>
+        <div class="price-wrap">
+          <div class="price">$30 <span class="per">/شهر</span></div>
+        </div>
+        <button class="select" onclick="openModal('Platinum', 30)">اختر الخطة</button>
+
+        <ul class="list">
+          <li><span class="check">✓</span> 10 أنوية معالج</li>
+          <li><span class="check">✓</span> 48GB RAM</li>
+          <li><span class="check">✓</span> 300GB NVMe</li>
+          <li><span class="check">✓</span> باندويث لا محدود</li>
+          <li><span class="check">✓</span> منفذ 2Gbps</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+      <h3 class="trust-title">لماذا نحن موثوقون؟</h3>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">🔒</div>
+          <div class="trust-text">تشفير SSL كامل</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">⚡</div>
+          <div class="trust-text">تفعيل فوري</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">💰</div>
+          <div class="trust-text">ضمان استرجاع المال</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="bigbox">
+      <h2>كل خطة فيها <span class="grad">كل اللي تحتاجه</span> وزيادة</h2>
+
+      <div class="featgrid">
+        <div class="feat"><span class="check">✓</span> <div>Dedicated IPv4 <small>IP ثابت لكل خطة</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>Unlimited Bandwidth <small>بدون حد استهلاك</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>DDoS Protection <small>حماية أساسية</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>24/7 Support <small>دعم طول الوقت</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>Instant Setup <small>تفعيل سريع</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>NVMe Storage <small>أداء سريع</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>99.9% Uptime <small>استقرار عالي</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>Free Reinstall <small>إعادة تثبيت</small></div></div>
+        <div class="feat"><span class="check">✓</span> <div>Multiple OS <small>قوالب متعددة</small></div></div>
+      </div>
+    </section>
+
+    <!-- FAQ Preview -->
+    <section class="faq-preview">
+      <h2>أسئلة شائعة</h2>
+      <div class="faq-items">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">
+            التفعيل بياخد وقت قد إيه؟
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">غالباً فوري أو خلال دقائق. لو فيه ضغط ممكن يتأخر شوية.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">
+            هل فيه IP ثابت؟
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">أيوه، Dedicated IPv4 لكل خطة.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">
+            هل أقدر أغير الباسورد؟
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">نعم من داخل الـRDP بعد أول دخول، أو من لوحة العميل لو متاحة.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="foot">
+        <div>© 2026 hostrdp</div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="support.html">الدعم</a>
+          <a href="faq.html">FAQ</a>
+          <a href="tos.html">TOS</a>
+        </div>
+        <div class="social-links">
+          <a href="https://t.me/hostrdp" class="social-btn" target="_blank">📨</a>
+          <a href="#" class="social-btn">🐦</a>
+          <a href="#" class="social-btn">💬</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Live Indicator -->
+  <div class="live-indicator">
+    <span class="live-dot"></span>
+    الدعم متاح الآن
+  </div>
+
+  <!-- Order Modal -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      
+      <!-- Progress Steps -->
+      <div class="step-indicator">
+        <div class="step active" id="step1"><span class="step-num">1</span> الموقع</div>
+        <div class="step" id="step2"><span class="step-num">2</span> النظام</div>
+        <div class="step" id="step3"><span class="step-num">3</span> الدفع</div>
+      </div>
+
+      <!-- Step 1: Country -->
+      <div id="countryStep">
+        <h2>اختر موقع السيرفر</h2>
+        <p class="modal-desc">اختر الدولة الأقرب لك</p>
+        
+        <div class="selected-plan">
+          <div>
+            <div class="selected-plan-name" id="selectedPlanName">Silver</div>
+            <small>خطة مختارة</small>
+          </div>
+          <div class="selected-plan-price" id="selectedPlanPrice">$10/شهر</div>
+        </div>
+
+        <div class="countries-grid" id="countriesGrid"></div>
+
+        <div class="modal-actions">
+          <button class="modal-btn secondary" onclick="closeModal()">إلغاء</button>
+          <button class="modal-btn primary" id="nextBtn" onclick="goToOSStep()" disabled>التالي</button>
+        </div>
+      </div>
+
+      <!-- Step 2: OS -->
+      <div id="osStep" class="hidden">
+        <h2>اختر نظام التشغيل</h2>
+        <p class="modal-desc">اختر النظام المناسب</p>
+
+        <div class="os-categories">
+          <button class="os-cat-btn active" onclick="filterOS('all')">الكل</button>
+          <button class="os-cat-btn" onclick="filterOS('windows')">Windows</button>
+          <button class="os-cat-btn" onclick="filterOS('linux')">Linux</button>
+        </div>
+
+        <div class="os-grid" id="osGrid"></div>
+
+        <div class="modal-actions">
+          <button class="modal-btn secondary" onclick="backToCountry()">رجوع</button>
+          <button class="modal-btn primary" id="osNextBtn" onclick="goToPaymentStep()" disabled>التالي</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment -->
+      <div id="paymentStep" class="hidden">
+        <h2>اختر طريقة الدفع</h2>
+        <p class="modal-desc">اختر الطريقة الأنسب لك</p>
+
+        <div class="payment-methods">
+          <div class="payment-option" onclick="selectPayment('crypto')">
+            <span class="payment-icon">₿</span>
+            <div class="payment-info">
+              <div class="payment-name">Cryptocurrency</div>
+              <div class="payment-desc">BTC, ETH, USDT</div>
+            </div>
+          </div>
+
+          <div class="payment-option" onclick="selectPayment('binance')">
+            <span class="payment-icon">🟡</span>
+            <div class="payment-info">
+              <div class="payment-name">Binance Pay</div>
+              <div class="payment-desc">دفع سريع وآمن</div>
+            </div>
+          </div>
+
+          <div class="payment-option" onclick="selectPayment('vodafone')">
+            <span class="payment-icon">📱</span>
+            <div class="payment-info">
+              <div class="payment-name">Vodafone Cash</div>
+              <div class="payment-desc">محفظة فودافون</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Details (Hidden initially) -->
+        <div id="paymentDetails" class="hidden">
+          <div class="payment-info-box">
+            <h3 id="paymentTitle">تفاصيل التحويل</h3>
+            <div class="payment-detail">
+              <span class="label" id="paymentLabel">العنوان:</span>
+              <div class="value-copy">
+                <span class="value" id="paymentAddress">-</span>
+                <button class="copy-btn" onclick="copyToClipboard()">📋</button>
+              </div>
+            </div>
+            <div class="payment-detail">
+              <span class="label">المبلغ المطلوب:</span>
+              <span class="value" id="paymentAmount">-</span>
+            </div>
+          </div>
+
+          <!-- Upload Screenshot -->
+          <div class="upload-section">
+            <label class="upload-label">
+              <input type="file" id="screenshot" accept="image/*" onchange="handleFileSelect(event)">
+              <div class="upload-area" id="uploadArea">
+                <span class="upload-icon">📸</span>
+                <span class="upload-text">اضغط لرفع سكرين شوت التحويل</span>
+              </div>
+            </label>
+            <div id="previewArea" class="hidden">
+              <img id="preview" src="" alt="Preview">
+              <button class="remove-btn" onclick="removeFile()">حذف</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="modal-btn secondary" onclick="backToOS()">رجوع</button>
+          <button class="modal-btn primary" id="confirmPaymentBtn" onclick="confirmOrder()" disabled>تأكيد الطلب</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/698cf1b852a8d51c3f6996c6/1jh790e42';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

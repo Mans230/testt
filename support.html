@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Support | RDP.cheap</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <span class="logo"></span>
+        <span>RDP<b>.cheap</b></span>
+      </a>
+
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="links" id="mainNav">
+        <a href="index.html">الخطط</a>
+        <a href="support.html">الدعم</a>
+        <a href="faq.html">FAQ</a>
+        <a href="tos.html">TOS</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn" href="faq.html">FAQ</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <h1 class="title">الدعم الفني</h1>
+      <p class="subtitle">نحن هنا لمساعدتك 24/7</p>
+    </header>
+
+    <section style="padding:20px 0 30px">
+      <div style="display:grid;gap:16px;max-width:600px;margin:0 auto">
+        
+        <!-- Contact Methods -->
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:14px">طرق التواصل</h3>
+          
+          <div style="display:grid;gap:12px">
+            <div class="feat" onclick="openTawk()" style="cursor:pointer">
+              <span class="check" style="font-size:16px">💬</span>
+              <div>
+                <strong>Live Chat</strong>
+                <small>دردشة مباشرة - رد فوري</small>
+              </div>
+            </div>
+
+            <a href="https://t.me/hostrdp" class="feat" target="_blank" style="text-decoration:none">
+              <span class="check" style="font-size:16px">📨</span>
+              <div>
+                <strong>Telegram</strong>
+                <small>@hostrdp</small>
+              </div>
+            </a>
+
+            <div class="feat">
+              <span class="check" style="font-size:16px">✉️</span>
+              <div>
+                <strong>Email</strong>
+                <small>support@rdp.cheap</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:14px">فتح تذكرة دعم</h3>
+          
+          <form action="https://formspree.io/f/xeeledyg" method="POST" style="display:grid;gap:12px">
+            <div>
+              <label style="display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:4px">الاسم</label>
+              <input type="text" name="name" required style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-weight:700">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:4px">البريد الإلكتروني</label>
+              <input type="email" name="email" required style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-weight:700">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:4px">القسم</label>
+              <select name="department" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-weight:700">
+                <option>Technical Support</option>
+                <option>Billing</option>
+                <option>Sales</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:4px">الرسالة</label>
+              <textarea name="message" required rows="5" placeholder="اكتب المشكلة بالتفصيل..." style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-weight:700;resize:vertical"></textarea>
+            </div>
+
+            <button type="submit" class="select" style="background:var(--gradient);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.18)">إرسال</button>
+            
+            <p style="font-size:11px;color:var(--muted);font-weight:700;margin:0">💡 نصيحة: اذكر رقم الطلب + IP + لقطة من الخطأ لو المشكلة تقنية</p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>© 2026 hostrdp</div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="index.html">الخطط</a>
+          <a href="faq.html">FAQ</a>
+          <a href="tos.html">TOS</a>
+        </div>
+        <div class="social-links">
+          <a href="https://t.me/hostrdp" class="social-btn" target="_blank">📨</a>
+          <a href="#" class="social-btn">🐦</a>
+          <a href="#" class="social-btn">💬</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="live-indicator">
+    <span class="live-dot"></span>
+    الدعم متاح الآن
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      nav.classList.toggle('active');
+      btn.classList.toggle('active');
+    }
+
+    function openTawk() {
+      if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+        Tawk_API.maximize();
+      }
+    }
+  </script>
+
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/698cf1b852a8d51c3f6996c6/1jh790e42';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+</body>
+</html>
