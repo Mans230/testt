@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plans | RDP.cheap - خطط RDP احترافية</title>
+  <meta name="description" content="احصل على RDP سريع وموثوق مع IP مخصص، حماية DDoS، ودعم 24/7. خطط تبدأ من $10 شهرياً">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f3f6fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --shadow:0 14px 35px rgba(15,23,42,.08);
+      --radius:18px;
+      --blue:#2563eb;
+      --blue2:#1d4ed8;
+      --green:#22c55e;
+      --purple:#7c3aed;
+      --orange:#f97316;
+      --chip:#eef2f7;
+      --gradient:linear-gradient(135deg, var(--blue), var(--purple));
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Cairo', system-ui, Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+
+    /* NAV */
+    .nav{
+      margin:14px auto 0;
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(226,232,240,.8);
+      border-radius:999px;
+      box-shadow:0 10px 30px rgba(2,6,23,.06);
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      position:sticky;
+      top:8px;
+      z-index:100;
+      backdrop-filter:blur(10px);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      font-size:15px;
+    }
+    .logo{
+      width:32px;height:32px;border-radius:10px;
+      background:var(--gradient);
+      box-shadow:0 10px 25px rgba(37,99,235,.25);
+      position:relative;
+      animation:pulse 3s ease-in-out infinite;
+      flex-shrink:0;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:7px;
+      border-radius:8px;
+      background:rgba(255,255,255,.22);
+    }
+    .brand span b{
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .links{
+      display:flex; align-items:center; gap:14px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    .links a{padding:7px 10px;border-radius:999px;transition:.2s}
+    .links a:hover{background:#f1f5f9;color:var(--text)}
+    .actions{display:flex; align-items:center; gap:8px}
+    .btn{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:9px 14px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s;
+      font-size:13px;
+      font-family:'Cairo', system-ui;
+    }
+    .btn:hover{background:#f8fafc;transform:translateY(-1px)}
+    .btn.primary{
+      border-color:transparent;
+      background:var(--gradient);
+      color:#fff;
+      box-shadow:0 12px 26px rgba(37,99,235,.22);
+    }
+    .btn.primary:hover{filter:brightness(1.1);transform:translateY(-2px)}
+
+    /* Currency Toggle */
+    .currency-bar{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin:16px 0 0;
+      animation:slideDown .5s ease-out .1s both;
+    }
+    .currency-btn{
+      padding:8px 18px;
+      border-radius:999px;
+      border:2px solid var(--border);
+      background:#fff;
+      color:var(--muted);
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s;
+      font-family:'Cairo', system-ui;
+    }
+    .currency-btn.active{
+      background:var(--gradient);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 8px 20px rgba(37,99,235,.2);
+    }
+    .currency-btn:hover:not(.active){
+      border-color:var(--blue);
+      color:var(--blue);
+    }
+
+    /* Hero Section */
+    .hero{
+      padding:40px 0 24px;
+      text-align:center;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      top:0;left:50%;
+      transform:translateX(-50%);
+      width:500px;height:500px;
+      background:radial-gradient(circle, rgba(37,99,235,.08) 0%, transparent 70%);
+      pointer-events:none;
+      z-index:-1;
+    }
+    .title{
+      margin:0;
+      font-size:38px;
+      letter-spacing:-.5px;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:slideDown .6s ease-out;
+      line-height:1.2;
+    }
+    @keyframes slideDown{
+      from{opacity:0;transform:translateY(-20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .subtitle{
+      margin:12px auto 0;
+      color:var(--muted);
+      max-width:680px;
+      line-height:1.8;
+      font-weight:600;
+      font-size:14px;
+      animation:slideDown .6s ease-out .2s both;
+      padding:0 8px;
+    }
+
+    /* Stats */
+    .stats{
+      margin:24px auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      max-width:860px;
+      animation:slideDown .6s ease-out .4s both;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px 10px;
+      text-align:center;
+      box-shadow:0 8px 20px rgba(2,6,23,.04);
+    }
+    .stat-num{
+      font-size:24px;
+      font-weight:900;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      line-height:1;
+    }
+    .stat-label{
+      margin-top:5px;
+      font-size:11px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    /* Cards */
+    .grid{
+      padding:24px 0 20px;
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:16px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:0 10px 26px rgba(2,6,23,.04);
+      padding:20px;
+      transition:.3s ease;
+      position:relative;
+      min-height:400px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      animation:fadeIn .5s ease-out backwards;
+    }
+    /* Card variants */
+    .card.style-horizontal{
+      min-height:auto;
+      flex-direction:row;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .card.style-horizontal .price-wrap{margin-top:0}
+    .card.style-horizontal .list{margin-top:0;flex:1 1 100%}
+    .card.style-compact{
+      min-height:280px;
+      padding:16px;
+    }
+    .card.style-compact .price{font-size:34px}
+    .card.style-wide{
+      grid-column:span 2;
+      flex-direction:row;
+      align-items:stretch;
+      min-height:auto;
+    }
+    .card.style-wide .card-main{flex:1}
+    .card.style-wide .card-features{
+      flex:1;
+      border-right:1px solid var(--border);
+      padding-right:20px;
+      margin-right:20px;
+    }
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 40px rgba(2,6,23,.1);
+    }
+    .card.style-horizontal:hover,.card.style-wide:hover{
+      transform:translateY(-4px);
+    }
+    .card.featured{
+      border:2px solid rgba(37,99,235,.55);
+      box-shadow:0 18px 42px rgba(37,99,235,.12);
+      transform:scale(1.02);
+    }
+    .card.featured:hover{
+      transform:scale(1.02) translateY(-6px);
+    }
+    .badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:var(--gradient);
+      color:#fff;
+      font-weight:900;
+      font-size:10px;
+      padding:5px 10px;
+      border-radius:999px;
+      box-shadow:0 6px 16px rgba(37,99,235,.3);
+      animation:bounce 2s ease-in-out infinite;
+      white-space:nowrap;
+    }
+    .badge.custom-badge{background:linear-gradient(135deg,var(--orange),#ef4444)}
+    @keyframes bounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-3px)}
+    }
+    .plan{
+      font-weight:900;
+      font-size:20px;
+      margin:0;
+      letter-spacing:-.2px;
+    }
+    .desc{
+      margin:0;
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+    }
+    .price-wrap{margin-top:auto}
+    .price{
+      font-weight:900;
+      font-size:40px;
+      letter-spacing:-.8px;
+      line-height:1;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      transition:.3s;
+    }
+    .per{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+    }
+    .price-egp{
+      font-size:13px;
+      color:var(--green);
+      font-weight:800;
+      margin-top:3px;
+      display:none;
+    }
+    .show-egp .price-egp{display:block}
+    .show-egp .price-usd{display:none}
+
+    .select{
+      margin-top:8px;
+      border:0;
+      width:100%;
+      padding:13px 14px;
+      border-radius:12px;
+      background:var(--chip);
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s;
+      font-size:13px;
+      font-family:'Cairo', system-ui;
+    }
+    .select:hover{
+      background:#dde3ec;
+      transform:translateY(-2px);
+    }
+    .card.featured .select{
+      background:var(--gradient);
+      color:#fff;
+      box-shadow:0 12px 24px rgba(37,99,235,.18);
+    }
+    .card.featured .select:hover{filter:brightness(1.1)}
+
+    .list{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      color:#334155;
+      font-weight:700;
+      font-size:12px;
+    }
+    .list li{display:flex; align-items:center; gap:8px}
+    .check{
+      width:18px;height:18px;border-radius:50%;
+      background:rgba(34,197,94,.15);
+      border:1px solid rgba(34,197,94,.35);
+      display:grid;place-items:center;
+      color:var(--green);
+      font-size:11px;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    /* Modal */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,.75);
+      backdrop-filter:blur(6px);
+      z-index:1000;
+      padding:16px;
+      overflow-y:auto;
+    }
+    .modal.active{display:flex;align-items:center;justify-content:center}
+    .modal-content{
+      background:#fff;
+      border-radius:22px;
+      max-width:700px;
+      width:100%;
+      padding:26px;
+      box-shadow:0 25px 50px rgba(15,23,42,.3);
+      position:relative;
+      animation:slideUp .3s ease-out;
+      max-height:92vh;
+      overflow-y:auto;
+    }
+    @keyframes slideUp{
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .modal-close{
+      position:absolute;
+      top:16px;
+      left:16px;
+      width:34px;height:34px;
+      border-radius:50%;
+      background:#f1f5f9;
+      border:none;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      font-size:18px;
+      color:var(--muted);
+      transition:.2s;
+      z-index:10;
+    }
+    .modal-close:hover{background:#e2e8f0;transform:rotate(90deg)}
+    .modal h2{
+      margin:0 0 6px;
+      font-size:22px;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .modal-desc{
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+      margin-bottom:20px;
+    }
+    .selected-plan{
+      background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
+      border:1px solid rgba(37,99,235,.2);
+      border-radius:14px;
+      padding:14px;
+      margin-bottom:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .selected-plan-name{font-weight:900;font-size:16px;color:var(--blue)}
+    .selected-plan-price{
+      font-weight:900;
+      font-size:22px;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .step-indicator{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+    .step{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:#f1f5f9;
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+    }
+    .step.active{background:var(--gradient);color:#fff}
+    .step.completed{background:#dcfce7;color:var(--green)}
+    .step-num{
+      width:20px;height:20px;
+      border-radius:50%;
+      background:rgba(255,255,255,.3);
+      display:grid;place-items:center;
+      font-weight:900;font-size:11px;
+    }
+
+    .countries-grid, .os-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:18px;
+    }
+    .option{
+      background:#f8fafc;
+      border:2px solid var(--border);
+      border-radius:12px;
+      padding:12px 14px;
+      cursor:pointer;
+      transition:.2s;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      position:relative;
+    }
+    .option.disabled{
+      opacity:.45;
+      cursor:not-allowed;
+      filter:grayscale(.5);
+    }
+    .option.disabled:hover{transform:none;border-color:var(--border);background:#f8fafc}
+    .option-unavail{
+      position:absolute;
+      top:6px;
+      left:6px;
+      background:#ef4444;
+      color:#fff;
+      font-size:9px;
+      font-weight:900;
+      padding:2px 7px;
+      border-radius:999px;
+    }
+    .option:not(.disabled):hover{
+      border-color:var(--blue);
+      background:#f0f9ff;
+      transform:translateX(-2px);
+    }
+    .option.selected{
+      border-color:var(--blue);
+      background:linear-gradient(135deg,#eff6ff,#dbeafe);
+      box-shadow:0 6px 16px rgba(37,99,235,.15);
+    }
+    .option-icon{font-size:26px;line-height:1}
+    .option-info{flex:1;min-width:0}
+    .option-name{font-weight:900;font-size:14px;color:var(--text)}
+    .option-desc{font-size:10px;color:var(--muted);font-weight:700;margin-top:1px}
+    .option-badge{
+      background:var(--green);
+      color:#fff;
+      font-size:9px;
+      font-weight:900;
+      padding:3px 7px;
+      border-radius:999px;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .option-badge.premium{background:var(--orange)}
+    .option-badge.popular{background:var(--blue)}
+
+    .os-categories{
+      display:flex;
+      gap:6px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .os-cat-btn{
+      padding:7px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      transition:.2s;
+      font-family:'Cairo', system-ui;
+    }
+    .os-cat-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .os-cat-btn.active{background:var(--gradient);color:#fff;border-color:transparent}
+
+    .modal-actions{
+      display:flex;
+      gap:10px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .modal-btn{
+      flex:1;
+      min-width:120px;
+      border:0;
+      padding:13px;
+      border-radius:12px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s;
+      font-size:14px;
+      font-family:'Cairo', system-ui;
+    }
+    .modal-btn.secondary{background:#f1f5f9;color:var(--text)}
+    .modal-btn.secondary:hover{background:#e2e8f0}
+    .modal-btn.primary{
+      background:var(--gradient);
+      color:#fff;
+      box-shadow:0 10px 20px rgba(37,99,235,.2);
+    }
+    .modal-btn.primary:hover{filter:brightness(1.1);transform:translateY(-2px)}
+    .modal-btn.primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+    /* Features Section */
+    .bigbox{
+      margin:24px 0 32px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:36px 24px;
+      text-align:center;
+    }
+    .bigbox h2{margin:0;font-size:28px;letter-spacing:-.4px}
+    .bigbox h2 .grad{
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .featgrid{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+      text-align:right;
+      max-width:960px;
+      margin-inline:auto;
+    }
+    .feat{
+      display:flex; align-items:center; gap:10px;
+      padding:14px 12px;
+      border-radius:14px;
+      background:#f8fafc;
+      border:1px solid rgba(226,232,240,.9);
+      font-weight:800;
+      color:#0f172a;
+      transition:.2s;
+      font-size:13px;
+    }
+    .feat:hover{background:#f1f5f9;transform:translateX(-3px)}
+    .feat small{display:block;color:var(--muted);font-weight:700;margin-top:2px;font-size:11px}
+
+    /* Trust Section */
+    .trust{
+      margin:24px 0;
+      background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
+      border:1px solid rgba(37,99,235,.2);
+      border-radius:24px;
+      padding:26px;
+      text-align:center;
+    }
+    .trust-title{font-size:22px;font-weight:900;margin:0 0 18px;color:var(--blue)}
+    .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .trust-item{background:#fff;border-radius:14px;padding:18px;box-shadow:0 6px 16px rgba(37,99,235,.08)}
+    .trust-icon{font-size:32px;margin-bottom:8px}
+    .trust-text{font-weight:900;font-size:13px;color:var(--text)}
+
+    /* FAQ */
+    .faq-preview{
+      margin:24px 0 32px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+    .faq-preview h2{margin:0 0 18px;font-size:24px;text-align:center}
+    .faq-items{display:grid;gap:10px;max-width:780px;margin:0 auto}
+    .faq-item{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px 16px;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .faq-item:hover{background:#f1f5f9}
+    .faq-q{font-weight:900;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .faq-a{margin-top:8px;color:var(--muted);font-weight:700;font-size:12px;line-height:1.7;display:none}
+    .faq-item.open .faq-a{display:block}
+    .faq-toggle{color:var(--blue);font-weight:900;flex-shrink:0}
+
+    /* Footer */
+    footer{padding:24px 0 36px;color:var(--muted);font-weight:700;font-size:12px}
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(226,232,240,.9);
+      padding-top:18px;
+    }
+    .foot a{color:var(--muted);transition:.2s}
+    .foot a:hover{color:var(--blue)}
+    .social-links{display:flex;gap:8px}
+    .social-btn{
+      width:34px;height:34px;
+      border-radius:50%;
+      background:#f1f5f9;
+      display:grid;place-items:center;
+      transition:.2s;font-size:16px;
+    }
+    .social-btn:hover{background:var(--gradient);color:#fff;transform:translateY(-2px)}
+
+    /* Live indicator */
+    .live-indicator{
+      position:fixed;
+      bottom:18px;
+      left:18px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:9px 14px;
+      box-shadow:0 10px 25px rgba(2,6,23,.1);
+      display:flex;
+      align-items:center;
+      gap:7px;
+      font-weight:800;
+      font-size:12px;
+      z-index:99;
+      animation:slideInLeft .5s ease-out 1s both;
+    }
+    @keyframes slideInLeft{
+      from{opacity:0;transform:translateX(-20px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+    .live-dot{
+      width:7px;height:7px;
+      border-radius:50%;
+      background:var(--green);
+      animation:blink 2s ease-in-out infinite;
+    }
+    @keyframes blink{
+      0%,100%{opacity:1}
+      50%{opacity:.3}
+    }
+
+    .hidden{display:none!important}
+
+    /* ===== ADMIN PANEL ===== */
+    .admin-toggle{
+      position:fixed;
+      bottom:18px;
+      right:18px;
+      background:var(--gradient);
+      color:#fff;
+      border:none;
+      border-radius:50%;
+      width:52px;height:52px;
+      font-size:22px;
+      cursor:pointer;
+      box-shadow:0 12px 28px rgba(37,99,235,.35);
+      z-index:200;
+      transition:.2s;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .admin-toggle:hover{transform:scale(1.1) rotate(15deg)}
+
+    .admin-panel{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,.8);
+      backdrop-filter:blur(8px);
+      z-index:300;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+    .admin-panel.open{display:flex}
+    .admin-content{
+      background:#fff;
+      border-radius:24px;
+      width:100%;
+      max-width:860px;
+      max-height:92vh;
+      overflow-y:auto;
+      padding:28px;
+      box-shadow:0 30px 60px rgba(15,23,42,.4);
+      animation:slideUp .3s ease-out;
+    }
+    .admin-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .admin-header h2{
+      margin:0;
+      font-size:22px;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .admin-close{
+      width:36px;height:36px;
+      border-radius:50%;
+      background:#f1f5f9;
+      border:none;
+      cursor:pointer;
+      font-size:18px;
+      display:grid;place-items:center;
+      transition:.2s;
+    }
+    .admin-close:hover{background:#fee2e2;transform:rotate(90deg)}
+
+    .admin-tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:24px;
+      flex-wrap:wrap;
+    }
+    .admin-tab{
+      padding:8px 16px;
+      border-radius:999px;
+      border:2px solid var(--border);
+      background:#fff;
+      color:var(--muted);
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s;
+      font-family:'Cairo', system-ui;
+    }
+    .admin-tab.active{background:var(--gradient);color:#fff;border-color:transparent}
+    .admin-tab-content{display:none}
+    .admin-tab-content.active{display:block}
+
+    /* Form */
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group label{font-weight:800;font-size:13px;color:var(--text)}
+    .form-group input,.form-group select,.form-group textarea{
+      padding:10px 14px;
+      border:2px solid var(--border);
+      border-radius:10px;
+      font-size:13px;
+      font-family:'Cairo', system-ui;
+      font-weight:700;
+      color:var(--text);
+      transition:.2s;
+      outline:none;
+      background:#fff;
+    }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+    .form-group textarea{resize:vertical;min-height:80px}
+    .form-full{grid-column:1/-1}
+
+    .features-editor{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin:10px 0;
+    }
+    .feature-row{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .feature-row input{flex:1}
+    .feat-del-btn{
+      background:#fee2e2;
+      border:none;
+      border-radius:8px;
+      width:34px;height:34px;
+      cursor:pointer;
+      font-size:16px;
+      display:grid;place-items:center;
+      transition:.2s;
+      flex-shrink:0;
+    }
+    .feat-del-btn:hover{background:#fecaca}
+
+    .add-feat-btn{
+      background:#f0fdf4;
+      border:2px dashed var(--green);
+      border-radius:10px;
+      padding:10px;
+      font-weight:800;
+      font-size:13px;
+      color:var(--green);
+      cursor:pointer;
+      font-family:'Cairo', system-ui;
+      transition:.2s;
+      width:100%;
+    }
+    .add-feat-btn:hover{background:#dcfce7}
+
+    .save-btn{
+      background:var(--gradient);
+      color:#fff;
+      border:none;
+      border-radius:12px;
+      padding:13px 24px;
+      font-weight:900;
+      font-size:15px;
+      cursor:pointer;
+      width:100%;
+      font-family:'Cairo', system-ui;
+      transition:.2s;
+      margin-top:16px;
+    }
+    .save-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+
+    /* Countries toggle list */
+    .countries-list{display:flex;flex-direction:column;gap:10px}
+    .country-toggle-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 16px;
+      gap:12px;
+    }
+    .country-toggle-info{display:flex;align-items:center;gap:10px;flex:1}
+    .country-flag-big{font-size:24px}
+    .country-name-label{font-weight:800;font-size:14px}
+    .country-desc-label{font-size:11px;color:var(--muted);font-weight:700}
+
+    .toggle-switch{
+      position:relative;
+      width:46px;height:26px;
+      flex-shrink:0;
+    }
+    .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+    .toggle-slider{
+      position:absolute;
+      inset:0;
+      background:#cbd5e1;
+      border-radius:999px;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .toggle-slider:before{
+      content:"";
+      position:absolute;
+      left:3px;top:3px;
+      width:20px;height:20px;
+      background:#fff;
+      border-radius:50%;
+      transition:.3s;
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+    }
+    .toggle-switch input:checked + .toggle-slider{background:var(--blue)}
+    .toggle-switch input:checked + .toggle-slider:before{left:23px}
+
+    /* Plans list in admin */
+    .plans-list-admin{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+    .plan-admin-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 16px;
+      flex-wrap:wrap;
+    }
+    .plan-admin-info{flex:1}
+    .plan-admin-name{font-weight:900;font-size:15px}
+    .plan-admin-price{font-size:12px;color:var(--blue);font-weight:800}
+    .plan-admin-actions{display:flex;gap:8px}
+    .plan-edit-btn,.plan-del-btn{
+      padding:7px 14px;
+      border-radius:8px;
+      border:none;
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      font-family:'Cairo', system-ui;
+      transition:.2s;
+    }
+    .plan-edit-btn{background:#eff6ff;color:var(--blue)}
+    .plan-edit-btn:hover{background:#dbeafe}
+    .plan-del-btn{background:#fee2e2;color:#ef4444}
+    .plan-del-btn:hover{background:#fecaca}
+
+    .success-toast{
+      position:fixed;
+      bottom:80px;
+      left:50%;
+      transform:translateX(-50%) translateY(20px);
+      background:#0f172a;
+      color:#fff;
+      padding:12px 24px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      z-index:500;
+      opacity:0;
+      transition:.3s;
+      white-space:nowrap;
+    }
+    .success-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* Section title */
+    .section-title{
+      text-align:center;
+      font-size:13px;
+      font-weight:800;
+      color:var(--muted);
+      margin:0 0 6px;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    /* Responsive */
+    @media (max-width:1100px){
+      .grid{grid-template-columns:repeat(2, 1fr)}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .card.style-wide{grid-column:span 2}
+    }
+    @media (max-width:768px){
+      .links{display:none}
+      .nav{padding:8px 12px}
+      .grid{grid-template-columns:1fr}
+      .card.style-wide{grid-column:span 1;flex-direction:column}
+      .card.style-wide .card-features{border-right:none;border-bottom:1px solid var(--border);padding-right:0;margin-right:0;padding-bottom:16px;margin-bottom:16px}
+      .card.style-horizontal{flex-direction:column}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .title{font-size:28px}
+      .featgrid{grid-template-columns:1fr}
+      .trust-grid{grid-template-columns:1fr}
+      .countries-grid, .os-grid{grid-template-columns:1fr}
+      .card.featured{transform:scale(1)}
+      .card.featured:hover{transform:translateY(-6px)}
+      .live-indicator{
+        bottom:auto;
+        top:auto;
+        bottom:76px;
+        left:10px;
+        font-size:11px;
+        padding:7px 12px;
+      }
+      .form-row{grid-template-columns:1fr}
+      .admin-content{padding:20px 16px}
+      .modal-content{padding:20px 16px}
+      .bigbox{padding:24px 16px}
+    }
+    @media (max-width:480px){
+      .title{font-size:24px}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat-num{font-size:20px}
+      .step-indicator{flex-direction:column;align-items:center}
+      .modal-actions{flex-direction:column}
+      .modal-btn{min-width:unset}
+      .plan-admin-actions{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/698cf1b852a8d51c3f6996c6/1jh790e42';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<body>
+
+<!-- ===== SUCCESS TOAST ===== -->
+<div class="success-toast" id="successToast"></div>
+
+<div class="wrap">
+  <div class="nav">
+    <a class="brand" href="index.html">
+      <span class="logo" aria-hidden="true"></span>
+      <span>RDP<b>.cheap</b></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="index.html">الخطط</a>
+      <a href="support.html">الدعم</a>
+      <a href="faq.html">الأسئلة الشائعة</a>
+      <a href="tos.html">TOS</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="support.html">تواصل</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1 class="title">خطط RDP احترافية</h1>
+    <p class="subtitle">
+      احصل على RDP سريع وموثوق مع IP مخصص، تخزين NVMe، وحماية DDoS. خوادم عالية الأداء بأسعار تنافسية مع دعم 24/7
+    </p>
+
+    <!-- Currency Toggle -->
+    <div class="currency-bar">
+      <button class="currency-btn active" id="btnUSD" onclick="setCurrency('usd')">$ دولار أمريكي</button>
+      <button class="currency-btn" id="btnEGP" onclick="setCurrency('egp')">ج.م جنيه مصري</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">99.9%</div>
+        <div class="stat-label">وقت التشغيل</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">دعم فني</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">موقع عالمي</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5K+</div>
+        <div class="stat-label">عميل راضي</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="grid" id="plansGrid" aria-label="Pricing plans">
+    <!-- Plans rendered by JS -->
+  </section>
+
+  <section class="trust">
+    <h3 class="trust-title">لماذا نحن موثوقون؟</h3>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-text">تشفير SSL كامل</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-text">تفعيل فوري</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">💰</div>
+        <div class="trust-text">ضمان استرجاع المال</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bigbox" aria-label="Every plan features">
+    <h2>كل خطة فيها <span class="grad">كل اللي تحتاجه</span> وزيادة</h2>
+    <div class="featgrid">
+      <div class="feat"><span class="check">✓</span> <div>Dedicated IPv4 <small>IP ثابت لكل خطة</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>Unlimited Bandwidth <small>بدون حد استهلاك</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>DDoS Protection <small>حماية أساسية</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>24/7 Support <small>دعم طول الوقت</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>Instant Setup <small>تفعيل سريع</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>NVMe Storage <small>أداء سريع</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>99.9% Uptime <small>استقرار عالي</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>Free Reinstall <small>إعادة تثبيت</small></div></div>
+      <div class="feat"><span class="check">✓</span> <div>Multiple OS <small>قوالب متعددة</small></div></div>
+    </div>
+  </section>
+
+  <section class="faq-preview">
+    <h2>أسئلة شائعة</h2>
+    <div class="faq-items">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">التفعيل بياخد وقت قد إيه؟ <span class="faq-toggle">+</span></div>
+        <div class="faq-a">غالباً فوري أو خلال دقائق. لو فيه ضغط ممكن يتأخر شوية.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">هل فيه IP ثابت؟ <span class="faq-toggle">+</span></div>
+        <div class="faq-a">أيوه، Dedicated IPv4 لكل خطة.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">هل أقدر أغير الباسورد؟ <span class="faq-toggle">+</span></div>
+        <div class="faq-a">نعم من داخل الـRDP بعد أول دخول، أو من لوحة العميل لو متاحة.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>© 2026 hostrdp - جميع الحقوق محفوظة</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="support.html">الدعم</a>
+        <a href="faq.html">FAQ</a>
+        <a href="tos.html">TOS</a>
+      </div>
+      <div class="social-links">
+        <a href="https://t.me/hostrdp" class="social-btn" target="_blank" title="Telegram">📨</a>
+        <a href="#" class="social-btn" title="Twitter">🐦</a>
+        <a href="#" class="social-btn" title="Discord">💬</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Live Indicator -->
+<div class="live-indicator">
+  <span class="live-dot"></span>
+  الدعم متاح الآن
+</div>
+
+<!-- Admin Toggle -->
+<button class="admin-toggle" onclick="toggleAdmin()" title="لوحة الإدارة">⚙️</button>
+
+<!-- Order Modal -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="step-indicator">
+      <div class="step" id="step1"><span class="step-num">1</span> اختر الموقع</div>
+      <div class="step" id="step2"><span class="step-num">2</span> اختر النظام</div>
+    </div>
+    <!-- Step 1 -->
+    <div id="countryStep">
+      <h2>اختر موقع السيرفر</h2>
+      <p class="modal-desc">اختر الدولة الأقرب لك للحصول على أفضل أداء وسرعة</p>
+      <div class="selected-plan">
+        <div>
+          <div class="selected-plan-name" id="selectedPlanName">Silver</div>
+          <small style="color:var(--muted);font-weight:700">خطة مختارة</small>
+        </div>
+        <div class="selected-plan-price" id="selectedPlanPrice">$10/شهر</div>
+      </div>
+      <div class="countries-grid" id="countriesGrid"></div>
+      <div class="modal-actions">
+        <button class="modal-btn secondary" onclick="closeModal()">إلغاء</button>
+        <button class="modal-btn primary" id="nextBtn" onclick="goToOSStep()" disabled>التالي: اختر النظام</button>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div id="osStep" class="hidden">
+      <h2>اختر نظام التشغيل</h2>
+      <p class="modal-desc">اختر نظام التشغيل المناسب لاحتياجاتك</p>
+      <div class="os-categories">
+        <button class="os-cat-btn active" onclick="filterOS('all')">الكل</button>
+        <button class="os-cat-btn" onclick="filterOS('windows')">Windows</button>
+        <button class="os-cat-btn" onclick="filterOS('linux')">Linux</button>
+      </div>
+      <div class="os-grid" id="osGrid"></div>
+      <div class="modal-actions">
+        <button class="modal-btn secondary" onclick="backToCountry()">رجوع</button>
+        <button class="modal-btn primary" id="confirmBtn" onclick="confirmOrder()" disabled>تأكيد الطلب</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-content">
+    <div class="admin-header">
+      <h2>⚙️ لوحة الإدارة</h2>
+      <button class="admin-close" onclick="toggleAdmin()">✕</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('plans')">📦 إدارة الخطط</button>
+      <button class="admin-tab" onclick="switchAdminTab('addplan')">➕ إضافة خطة</button>
+      <button class="admin-tab" onclick="switchAdminTab('countries')">🌍 إدارة الدول</button>
+    </div>
+
+    <!-- Tab: Plans List -->
+    <div class="admin-tab-content active" id="tab-plans">
+      <p style="font-size:13px;color:var(--muted);font-weight:700;margin:0 0 12px">إدارة الخطط الحالية وتعديلها أو حذفها</p>
+      <div class="plans-list-admin" id="plansListAdmin"></div>
+    </div>
+
+    <!-- Tab: Add Plan -->
+    <div class="admin-tab-content" id="tab-addplan">
+      <div id="editPlanNotice" class="hidden" style="background:#eff6ff;border:1px solid rgba(37,99,235,.2);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:800;color:var(--blue);margin-bottom:14px;">
+        🔧 وضع التعديل - تعديل خطة موجودة
+        <button onclick="resetAddForm()" style="float:left;background:none;border:none;color:#ef4444;cursor:pointer;font-weight:900;font-family:'Cairo',system-ui">إلغاء التعديل</button>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>اسم الخطة *</label>
+          <input type="text" id="f-name" placeholder="مثال: Diamond" />
+        </div>
+        <div class="form-group">
+          <label>الوصف</label>
+          <input type="text" id="f-desc" placeholder="مثال: للمشاريع الكبيرة" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>السعر بالدولار ($) *</label>
+          <input type="number" id="f-price" placeholder="مثال: 45" min="1" />
+        </div>
+        <div class="form-group">
+          <label>شكل الكارد</label>
+          <select id="f-style">
+            <option value="normal">عادي (normal)</option>
+            <option value="featured">مميز - Highlighted</option>
+            <option value="compact">مدمج - Compact</option>
+            <option value="horizontal">أفقي - Horizontal</option>
+            <option value="wide">عريض - Wide (2 عمود)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>نص الشارة (اختياري)</label>
+          <input type="text" id="f-badge" placeholder="مثال: جديد 🔥" />
+        </div>
+        <div class="form-group">
+          <label>لون الشارة</label>
+          <select id="f-badge-style">
+            <option value="">أزرق (افتراضي)</option>
+            <option value="custom-badge">برتقالي/أحمر</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group form-full" style="margin-bottom:14px">
+        <label>مميزات الخطة *</label>
+        <div class="features-editor" id="featuresEditor"></div>
+        <button class="add-feat-btn" onclick="addFeatureRow()">+ إضافة ميزة</button>
+      </div>
+
+      <button class="save-btn" id="savePlanBtn" onclick="savePlan()">💾 حفظ الخطة</button>
+    </div>
+
+    <!-- Tab: Countries -->
+    <div class="admin-tab-content" id="tab-countries">
+      <p style="font-size:13px;color:var(--muted);font-weight:700;margin:0 0 14px">تفعيل أو تعطيل الدول المتاحة للطلب</p>
+      <div class="countries-list" id="countriesToggleList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ===================== CONFIG ===================== */
+  const EGP_RATE = 50; // 1 USD = 50 EGP
+  let currentCurrency = 'usd';
+  let editingPlanId = null;
+
+  /* ===================== DATA ===================== */
+  let plans = [
+    {
+      id: 1,
+      name: 'Silver',
+      desc: 'مثالي للمبتدئين',
+      price: 10,
+      style: 'normal',
+      badge: '',
+      badgeStyle: '',
+      features: ['4 أنوية معالج', '8GB RAM', '75GB NVMe', 'باندويث لا محدود', 'منفذ 400Mbps']
+    },
+    {
+      id: 2,
+      name: 'Silver+',
+      desc: 'قوة أكبر، قيمة أفضل',
+      price: 13,
+      style: 'normal',
+      badge: '',
+      badgeStyle: '',
+      features: ['6 أنوية معالج', '12GB RAM', '100GB NVMe', 'باندويث لا محدود', 'منفذ 1Gbps']
+    },
+    {
+      id: 3,
+      name: 'Gold',
+      desc: 'للمشاريع المتنامية',
+      price: 20,
+      style: 'normal',
+      badge: '',
+      badgeStyle: '',
+      features: ['8 أنوية معالج', '24GB RAM', '200GB NVMe', 'باندويث لا محدود', 'منفذ 1.5Gbps']
+    },
+    {
+      id: 4,
+      name: 'Platinum',
+      desc: 'الخيار الأمثل',
+      price: 30,
+      style: 'featured',
+      badge: 'الأكثر شعبية',
+      badgeStyle: '',
+      features: ['10 أنوية معالج', '48GB RAM', '300GB NVMe', 'باندويث لا محدود', 'منفذ 2Gbps']
+    }
+  ];
+  let nextId = 5;
+
+  let countries = [
+    {name: 'الولايات المتحدة', flag: '🇺🇸', speed: 'سرعة عالية جداً', type: 'popular', code: 'us', enabled: true},
+    {name: 'ألمانيا', flag: '🇩🇪', speed: 'سرعة عالية', type: 'popular', code: 'de', enabled: true},
+    {name: 'فرنسا', flag: '🇫🇷', speed: 'سرعة عالية', type: 'standard', code: 'fr', enabled: true},
+    {name: 'هولندا', flag: '🇳🇱', speed: 'سرعة فائقة', type: 'popular', code: 'nl', enabled: true},
+    {name: 'المملكة المتحدة', flag: '🇬🇧', speed: 'سرعة عالية', type: 'standard', code: 'uk', enabled: true},
+    {name: 'كندا', flag: '🇨🇦', speed: 'سرعة عالية', type: 'standard', code: 'ca', enabled: true},
+    {name: 'سنغافورة', flag: '🇸🇬', speed: 'سرعة ممتازة', type: 'premium', code: 'sg', enabled: true},
+    {name: 'اليابان', flag: '🇯🇵', speed: 'سرعة فائقة', type: 'premium', code: 'jp', enabled: false},
+    {name: 'أستراليا', flag: '🇦🇺', speed: 'سرعة جيدة', type: 'standard', code: 'au', enabled: false},
+    {name: 'الإمارات', flag: '🇦🇪', speed: 'سرعة ممتازة', type: 'popular', code: 'ae', enabled: true}
+  ];
+
+  const operatingSystems = [
+    {name: 'Windows Server 2022', icon: '🪟', desc: 'الإصدار الأحدث', category: 'windows', popular: true},
+    {name: 'Windows Server 2019', icon: '🪟', desc: 'مستقر وموثوق', category: 'windows', popular: true},
+    {name: 'Windows Server 2016', icon: '🪟', desc: 'إصدار كلاسيكي', category: 'windows'},
+    {name: 'Windows 11 Pro', icon: '🪟', desc: 'للاستخدام الشخصي', category: 'windows'},
+    {name: 'Windows 10 Pro', icon: '🪟', desc: 'للاستخدام الشخصي', category: 'windows'},
+    {name: 'Ubuntu 24.04 LTS', icon: '🐧', desc: 'الأحدث - دعم طويل', category: 'linux', popular: true},
+    {name: 'Ubuntu 22.04 LTS', icon: '🐧', desc: 'مستقر - دعم طويل', category: 'linux', popular: true},
+    {name: 'Ubuntu 20.04 LTS', icon: '🐧', desc: 'موثوق ومستقر', category: 'linux'},
+    {name: 'Debian 12 (Bookworm)', icon: '🌀', desc: 'مستقر جداً', category: 'linux', popular: true},
+    {name: 'Debian 11 (Bullseye)', icon: '🌀', desc: 'مستقر وآمن', category: 'linux'},
+    {name: 'AlmaLinux 9', icon: '🔷', desc: 'بديل CentOS', category: 'linux', popular: true},
+    {name: 'Rocky Linux 9', icon: '🪨', desc: 'بديل CentOS', category: 'linux'},
+    {name: 'CentOS 7', icon: '💠', desc: 'كلاسيكي ومستقر', category: 'linux'},
+    {name: 'Fedora 40', icon: '🎩', desc: 'أحدث التقنيات', category: 'linux'},
+    {name: 'Arch Linux', icon: '⚙️', desc: 'للمتقدمين', category: 'linux'},
+    {name: 'CloudLinux 8', icon: '☁️', desc: 'محسّن للويب', category: 'linux'}
+  ];
+
+  /* ===================== CURRENCY ===================== */
+  function setCurrency(type) {
+    currentCurrency = type;
+    document.getElementById('btnUSD').classList.toggle('active', type === 'usd');
+    document.getElementById('btnEGP').classList.toggle('active', type === 'egp');
+    const grid = document.getElementById('plansGrid');
+    grid.classList.toggle('show-egp', type === 'egp');
+  }
+
+  function formatPrice(usd) {
+    return `$${usd}`;
+  }
+  function formatEGP(usd) {
+    return `${(usd * EGP_RATE).toLocaleString('ar-EG')} ج.م`;
+  }
+
+  /* ===================== RENDER PLANS ===================== */
+  function renderPlans() {
+    const grid = document.getElementById('plansGrid');
+    grid.innerHTML = plans.map((plan, i) => {
+      const isFeatured = plan.style === 'featured';
+      const isWide = plan.style === 'wide';
+      const isHorizontal = plan.style === 'horizontal';
+      const isCompact = plan.style === 'compact';
+
+      let cardClass = 'card';
+      if (isFeatured) cardClass += ' featured';
+      if (isWide) cardClass += ' style-wide';
+      if (isHorizontal) cardClass += ' style-horizontal';
+      if (isCompact) cardClass += ' style-compact';
+
+      const featuresHTML = plan.features.map(f => `<li><span class="check">✓</span> ${f}</li>`).join('');
+
+      const badgeHTML = plan.badge
+        ? `<div class="badge ${plan.badgeStyle||''}">${plan.badge}</div>`
+        : '';
+
+      if (isWide) {
+        return `
+          <article class="${cardClass}" style="animation-delay:${i * 0.1}s">
+            ${badgeHTML}
+            <div class="card-features">
+              <h3 class="plan">${plan.name}</h3>
+              <p class="desc">${plan.desc}</p>
+              <ul class="list" style="margin-top:12px">${featuresHTML}</ul>
+            </div>
+            <div class="card-main">
+              <div class="price-wrap">
+                <div class="price price-usd">${formatPrice(plan.price)} <span class="per">/شهر</span></div>
+                <div class="price-egp">${formatEGP(plan.price)} / شهر</div>
+              </div>
+              <button class="select" onclick="openModal('${plan.name}', ${plan.price})">اختر الخطة</button>
+            </div>
+          </article>`;
+      }
+
+      return `
+        <article class="${cardClass}" style="animation-delay:${i * 0.1}s">
+          ${badgeHTML}
+          <h3 class="plan">${plan.name}</h3>
+          <p class="desc">${plan.desc}</p>
+          <div class="price-wrap">
+            <div class="price price-usd">${formatPrice(plan.price)} <span class="per">/شهر</span></div>
+            <div class="price-egp">${formatEGP(plan.price)} / شهر</div>
+          </div>
+          <button class="select" onclick="openModal('${plan.name}', ${plan.price})">اختر الخطة</button>
+          <ul class="list">${featuresHTML}</ul>
+        </article>`;
+    }).join('');
+    // Re-apply currency
+    document.getElementById('plansGrid').classList.toggle('show-egp', currentCurrency === 'egp');
+  }
+
+  /* ===================== ORDER MODAL ===================== */
+  let selectedCountry = null;
+  let selectedOS = null;
+  let currentPlan = null;
+  let currentPrice = null;
+  let currentOSFilter = 'all';
+
+  function openModal(planName, price) {
+    currentPlan = planName;
+    currentPrice = price;
+    selectedCountry = null;
+    selectedOS = null;
+
+    document.getElementById('selectedPlanName').textContent = planName;
+    const priceText = currentCurrency === 'egp'
+      ? `${(price * EGP_RATE).toLocaleString('ar-EG')} ج.م/شهر`
+      : `$${price}/شهر`;
+    document.getElementById('selectedPlanPrice').textContent = priceText;
+
+    renderCountries();
+
+    document.getElementById('countryStep').classList.remove('hidden');
+    document.getElementById('osStep').classList.add('hidden');
+    document.getElementById('step1').classList.add('active');
+    document.getElementById('step1').classList.remove('completed');
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('nextBtn').disabled = true;
+
+    document.getElementById('orderModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderCountries() {
+    const grid = document.getElementById('countriesGrid');
+    grid.innerHTML = countries.map((country, idx) => `
+      <div class="option ${!country.enabled ? 'disabled' : ''}" data-idx="${idx}" ${country.enabled ? `onclick="selectCountry(${idx})"` : ''}>
+        ${!country.enabled ? '<span class="option-unavail">غير متاح</span>' : ''}
+        <span class="option-icon">${country.flag}</span>
+        <div class="option-info">
+          <div class="option-name">${country.name}</div>
+          <div class="option-desc">${country.speed}</div>
+        </div>
+        ${country.enabled && country.type === 'popular' ? '<span class="option-badge popular">شائع</span>' : ''}
+        ${country.enabled && country.type === 'premium' ? '<span class="option-badge premium">Premium</span>' : ''}
+      </div>
+    `).join('');
+  }
+
+  function selectCountry(idx) {
+    if (!countries[idx].enabled) return;
+    selectedCountry = countries[idx];
+    document.querySelectorAll('#countriesGrid .option').forEach(opt => opt.classList.remove('selected'));
+    const el = document.querySelector(`#countriesGrid .option[data-idx="${idx}"]`);
+    if (el) el.classList.add('selected');
+    document.getElementById('nextBtn').disabled = false;
+  }
+
+  function goToOSStep() {
+    if (!selectedCountry) return;
+    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step1').classList.add('completed');
+    document.getElementById('step2').classList.add('active');
+    document.getElementById('countryStep').classList.add('hidden');
+    document.getElementById('osStep').classList.remove('hidden');
+    currentOSFilter = 'all';
+    document.querySelectorAll('.os-cat-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.os-cat-btn').classList.add('active');
+    renderOS();
+  }
+
+  function renderOS() {
+    const filtered = currentOSFilter === 'all'
+      ? operatingSystems
+      : operatingSystems.filter(os => os.category === currentOSFilter);
+
+    const grid = document.getElementById('osGrid');
+    grid.innerHTML = filtered.map((os, idx) => `
+      <div class="option" data-osname="${os.name}" onclick="selectOS('${os.name.replace(/'/g,"\\'")}')">
+        <span class="option-icon">${os.icon}</span>
+        <div class="option-info">
+          <div class="option-name">${os.name}</div>
+          <div class="option-desc">${os.desc}</div>
+        </div>
+        ${os.popular ? '<span class="option-badge">شائع</span>' : ''}
+      </div>
+    `).join('');
+  }
+
+  function filterOS(category) {
+    currentOSFilter = category;
+    document.querySelectorAll('.os-cat-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    selectedOS = null;
+    document.getElementById('confirmBtn').disabled = true;
+    renderOS();
+  }
+
+  function selectOS(osName) {
+    selectedOS = osName;
+    document.querySelectorAll('#osGrid .option').forEach(opt => opt.classList.remove('selected'));
+    const el = document.querySelector(`#osGrid .option[data-osname="${osName}"]`);
+    if (el) el.classList.add('selected');
+    document.getElementById('confirmBtn').disabled = false;
+  }
+
+  function backToCountry() {
+    document.getElementById('step1').classList.add('active');
+    document.getElementById('step1').classList.remove('completed');
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('countryStep').classList.remove('hidden');
+    document.getElementById('osStep').classList.add('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('active');
+    document.body.style.overflow = '';
+    selectedCountry = null;
+    selectedOS = null;
+  }
+
+  function confirmOrder() {
+    if (!selectedCountry || !selectedOS) {
+      alert('يرجى اختيار الدولة ونظام التشغيل');
+      return;
+    }
+    const priceUSD = '$' + currentPrice + '/شهر';
+    const priceEGP = `${(currentPrice * EGP_RATE).toLocaleString('ar-EG')} ج.م/شهر`;
+    const orderMessage = `✅ طلب جديد\n━━━━━━━━━━━━━\n📦 الخطة: ${currentPlan}\n💰 السعر: ${priceUSD} (${priceEGP})\n🌍 الدولة: ${selectedCountry.name}\n💻 نظام التشغيل: ${selectedOS}\n━━━━━━━━━━━━━`;
+
+    setTimeout(() => {
+      if (typeof Tawk_API !== 'undefined') {
+        if (typeof Tawk_API.maximize === 'function') {
+          Tawk_API.maximize();
+          setTimeout(() => {
+            if (typeof Tawk_API.addEvent === 'function') {
+              Tawk_API.addEvent('طلب جديد', {
+                plan: currentPlan,
+                price: priceUSD,
+                country: selectedCountry.name,
+                os: selectedOS
+              });
+            }
+            if (typeof Tawk_API.sendMessage === 'function') {
+              Tawk_API.sendMessage(orderMessage);
+            }
+          }, 800);
+        }
+      } else {
+        alert('جاري التحضير... سيتم فتح الشات قريباً');
+      }
+    }, 300);
+    closeModal();
+  }
+
+  document.getElementById('orderModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  /* ===================== ADMIN PANEL ===================== */
+  function toggleAdmin() {
+    const panel = document.getElementById('adminPanel');
+    const isOpen = panel.classList.toggle('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (isOpen) {
+      renderPlansAdmin();
+      renderCountriesToggle();
+      initAddForm();
+    }
+  }
+
+  document.getElementById('adminPanel').addEventListener('click', function(e) {
+    if (e.target === this) toggleAdmin();
+  });
+
+  function switchAdminTab(tab) {
+    document.querySelectorAll('.admin-tab').forEach((t,i) => {
+      t.classList.toggle('active', ['plans','addplan','countries'][i] === tab);
+    });
+    document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    if (tab === 'plans') renderPlansAdmin();
+    if (tab === 'countries') renderCountriesToggle();
+  }
+
+  /* --- Plans Admin --- */
+  function renderPlansAdmin() {
+    const list = document.getElementById('plansListAdmin');
+    if (!plans.length) {
+      list.innerHTML = '<p style="color:var(--muted);font-size:13px;font-weight:700">لا توجد خطط بعد.</p>';
+      return;
+    }
+    list.innerHTML = plans.map(plan => `
+      <div class="plan-admin-row">
+        <div class="plan-admin-info">
+          <div class="plan-admin-name">${plan.name} ${plan.badge ? `<span style="font-size:11px;background:var(--gradient);color:#fff;padding:2px 8px;border-radius:999px;margin-right:6px">${plan.badge}</span>` : ''}</div>
+          <div class="plan-admin-price">$${plan.price}/شهر • ${(plan.price*EGP_RATE).toLocaleString('ar-EG')} ج.م • شكل: ${plan.style}</div>
+        </div>
+        <div class="plan-admin-actions">
+          <button class="plan-edit-btn" onclick="editPlan(${plan.id})">✏️ تعديل</button>
+          <button class="plan-del-btn" onclick="deletePlan(${plan.id})">🗑️ حذف</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function deletePlan(id) {
+    if (!confirm('هل تريد حذف هذه الخطة؟')) return;
+    plans = plans.filter(p => p.id !== id);
+    renderPlans();
+    renderPlansAdmin();
+    showToast('تم حذف الخطة ✓');
+  }
+
+  function editPlan(id) {
+    const plan = plans.find(p => p.id === id);
+    if (!plan) return;
+    editingPlanId = id;
+    switchAdminTab('addplan');
+    document.getElementById('editPlanNotice').classList.remove('hidden');
+    document.getElementById('f-name').value = plan.name;
+    document.getElementById('f-desc').value = plan.desc;
+    document.getElementById('f-price').value = plan.price;
+    document.getElementById('f-style').value = plan.style;
+    document.getElementById('f-badge').value = plan.badge || '';
+    document.getElementById('f-badge-style').value = plan.badgeStyle || '';
+    // Features
+    const ed = document.getElementById('featuresEditor');
+    ed.innerHTML = '';
+    plan.features.forEach(f => addFeatureRow(f));
+    document.getElementById('savePlanBtn').textContent = '💾 حفظ التعديلات';
+  }
+
+  function resetAddForm() {
+    editingPlanId = null;
+    document.getElementById('editPlanNotice').classList.add('hidden');
+    initAddForm();
+    document.getElementById('savePlanBtn').textContent = '💾 حفظ الخطة';
+  }
+
+  function initAddForm() {
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-desc').value = '';
+    document.getElementById('f-price').value = '';
+    document.getElementById('f-style').value = 'normal';
+    document.getElementById('f-badge').value = '';
+    document.getElementById('f-badge-style').value = '';
+    const ed = document.getElementById('featuresEditor');
+    ed.innerHTML = '';
+    addFeatureRow('');
+    addFeatureRow('');
+    addFeatureRow('');
+  }
+
+  function addFeatureRow(val = '') {
+    const ed = document.getElementById('featuresEditor');
+    const row = document.createElement('div');
+    row.className = 'feature-row';
+    row.innerHTML = `
+      <input type="text" placeholder="مثال: 8GB RAM" value="${val}" style="flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:13px;font-family:'Cairo',system-ui;font-weight:700;outline:none" />
+      <button class="feat-del-btn" onclick="this.parentElement.remove()">🗑️</button>
+    `;
+    ed.appendChild(row);
+    row.querySelector('input').focus();
+  }
+
+  function savePlan() {
+    const name = document.getElementById('f-name').value.trim();
+    const price = parseFloat(document.getElementById('f-price').value);
+    if (!name || isNaN(price) || price <= 0) {
+      alert('يرجى إدخال اسم الخطة والسعر بشكل صحيح');
+      return;
+    }
+    const features = Array.from(document.querySelectorAll('#featuresEditor .feature-row input'))
+      .map(i => i.value.trim()).filter(Boolean);
+    if (!features.length) {
+      alert('يرجى إضافة ميزة واحدة على الأقل');
+      return;
+    }
+
+    const planData = {
+      name,
+      desc: document.getElementById('f-desc').value.trim(),
+      price,
+      style: document.getElementById('f-style').value,
+      badge: document.getElementById('f-badge').value.trim(),
+      badgeStyle: document.getElementById('f-badge-style').value,
+      features
+    };
+
+    if (editingPlanId !== null) {
+      const idx = plans.findIndex(p => p.id === editingPlanId);
+      if (idx !== -1) plans[idx] = { ...planData, id: editingPlanId };
+      showToast('تم تعديل الخطة بنجاح ✓');
+    } else {
+      plans.push({ ...planData, id: nextId++ });
+      showToast('تم إضافة الخطة بنجاح ✓');
+    }
+
+    renderPlans();
+    renderPlansAdmin();
+    resetAddForm();
+    switchAdminTab('plans');
+  }
+
+  /* --- Countries Toggle --- */
+  function renderCountriesToggle() {
+    const list = document.getElementById('countriesToggleList');
+    list.innerHTML = countries.map((c, idx) => `
+      <div class="country-toggle-row">
+        <div class="country-toggle-info">
+          <span class="country-flag-big">${c.flag}</span>
+          <div>
+            <div class="country-name-label">${c.name}</div>
+            <div class="country-desc-label">${c.speed} • ${c.type === 'premium' ? 'Premium' : c.type === 'popular' ? 'شائع' : 'عادي'}</div>
+          </div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" ${c.enabled ? 'checked' : ''} onchange="toggleCountry(${idx}, this.checked)" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    `).join('');
+  }
+
+  function toggleCountry(idx, val) {
+    countries[idx].enabled = val;
+    showToast(val ? `تم تفعيل ${countries[idx].name} ✓` : `تم تعطيل ${countries[idx].name}`);
+  }
+
+  /* --- Toast --- */
+  function showToast(msg) {
+    const t = document.getElementById('successToast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  /* ===================== INIT ===================== */
+  renderPlans();
+  initAddForm();
+</script>
+</body>
+</html>
