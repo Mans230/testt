@@ -1,49 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Plans</title>
-    <style>
-        .currency-toggle {
-            margin: 10px;
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>أسعار خدمات RDP</title>
 </head>
 <body>
-    <nav>
-        <button class="currency-toggle" id="toggleCurrency">Switch to EGP</button>
-    </nav>
-    <div id="pricing">
-        <h2>Pricing Plans</h2>
-        <div id="silver">
-            <h3>Silver: <span class="price" data-usd="10" data-egp="500">$10</span></h3>
-        </div>
-        <div id="silverPlus">
-            <h3>Silver+: <span class="price" data-usd="13" data-egp="650">$13</span></h3>
-        </div>
-        <div id="gold">
-            <h3>Gold: <span class="price" data-usd="20" data-egp="1000">$20</span></h3>
-        </div>
-        <div id="platinum">
-            <h3>Platinum: <span class="price" data-usd="30" data-egp="1500">$30</span></h3>
-        </div>
-    </div>
-    <script>
-        document.getElementById('toggleCurrency').addEventListener('click', function() {
-            const prices = document.querySelectorAll('.price');
-            const currentCurrency = this.innerText.includes('EGP') ? 'EGP' : 'USD';
-            prices.forEach(price => {
-                const usd = price.getAttribute('data-usd');
-                const egp = price.getAttribute('data-egp');
-                price.innerText = currentCurrency === 'EGP' ? `\${egp}` : `\$${usd}`;
-            });
-            this.innerText = currentCurrency === 'EGP' ? 'Switch to USD' : 'Switch to EGP';
-        });
-    </script>
+    <header>
+        <h1>أسعار خدمات RDP</h1>
+    </header>
+    <main>
+        <section id="pricing">
+            <h2>الباقات والأسعار</h2>
+            <div class="pricing-card">
+                <h3>الباقة الأساسية</h3>
+                <p>السعر: 50 دولار في الشهر</p>
+                <button>احصل على هذه الباقة</button>
+            </div>
+            <div class="pricing-card">
+                <h3>الباقة المتقدمة</h3>
+                <p>السعر: 100 دولار في الشهر</p>
+                <button>احصل على هذه الباقة</button>
+            </div>
+        </section>
+        <section id="faq">
+            <h2>الأسئلة الشائعة</h2>
+            <div class="faq-item">
+                <h3>كيف يمكنني الاشتراك؟</h3>
+                <p>يمكنك الاشتراك عن طريق الضغط على زر الاشتراك أسفل كل باقة.</p>
+            </div>
+            <div class="faq-item">
+                <h3>هل يمكنني تغيير الباقة لاحقًا؟</h3>
+                <p>نعم، يمكنك تغيير باقتك في أي وقت.</p>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
