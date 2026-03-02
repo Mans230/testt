@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="theme-color" content="#2563eb"/>
+  <title>RDP.cheap – خطط RDP احترافية</title>
+  <meta name="description" content="خوادم RDP سريعة وموثوقة مع IP مخصص وحماية DDoS. أسعار بالجنيه المصري."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f0f4fa; --card: #fff; --text: #0f172a; --muted: #64748b; --border: #e2e8f0;
+      --blue: #2563eb; --green: #22c55e; --purple: #7c3aed; --orange: #f97316; --red: #ef4444;
+      --chip: #eef2f7; --gradient: linear-gradient(135deg,#2563eb,#7c3aed);
+      --shadow: 0 8px 28px rgba(15,23,42,.07); --radius: 18px;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: 'Cairo',system-ui,Arial,sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 8px; z-index: 50;
+      margin: 10px 16px 0;
+      background: rgba(255,255,255,.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(226,232,240,.7); border-radius: 999px;
+      padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      box-shadow: 0 4px 20px rgba(2,6,23,.06);
+    }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 15px; }
+    .logo {
+      width: 32px; height: 32px; flex-shrink: 0; border-radius: 9px;
+      background: var(--gradient); box-shadow: 0 6px 16px rgba(37,99,235,.3);
+      position: relative; animation: logoPulse 3s ease-in-out infinite;
+    }
+    .logo::after { content:""; position:absolute; inset:7px; border-radius:6px; background:rgba(255,255,255,.25); }
+    @keyframes logoPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+    .brand b { background: var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { padding: 7px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--muted); transition: .2s; }
+    .nav-links a:hover { background: #f1f5f9; color: var(--text); }
+    .nav-btn { border: 1.5px solid var(--border); background: #fff; padding: 8px 14px; border-radius: 999px; font-weight: 800; font-size: 13px; cursor: pointer; font-family: 'Cairo',system-ui; transition: .2s; white-space: nowrap; }
+    .nav-btn:hover { background: #f8fafc; }
+    .nav-btn.primary { background: var(--gradient); color: #fff; border-color: transparent; box-shadow: 0 6px 18px rgba(37,99,235,.25); }
+    .nav-btn.primary:hover { filter: brightness(1.08); }
+
+    /* HERO */
+    .hero { text-align: center; padding: 40px 16px 24px; position: relative; }
+    .hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(37,99,235,.09) 0%,transparent 70%); pointer-events:none; z-index:0; }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #eff6ff; border: 1px solid rgba(37,99,235,.2); border-radius: 999px;
+      padding: 6px 14px; font-size: 12px; font-weight: 800; color: var(--blue);
+      margin-bottom: 14px; animation: fadeUp .5s ease-out both;
+    }
+    .hero-title {
+      font-size: clamp(26px,6vw,44px); font-weight: 900; line-height: 1.2; letter-spacing: -.5px;
+      background: var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;
+      margin-bottom: 12px; animation: fadeUp .5s ease-out .1s both;
+    }
+    .hero-sub {
+      font-size: clamp(13px,2.5vw,15px); color: var(--muted); font-weight: 600; line-height: 1.8;
+      max-width: 600px; margin: 0 auto 24px; padding: 0 4px; animation: fadeUp .5s ease-out .2s both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; max-width: 820px; margin: 0 auto 8px; animation: fadeUp .5s ease-out .3s both; }
+    .stat { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 14px 8px; text-align: center; box-shadow: 0 4px 14px rgba(2,6,23,.04); }
+    .stat-n { font-size: clamp(18px,4vw,26px); font-weight: 900; line-height: 1; background: var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .stat-l { font-size: 11px; color: var(--muted); font-weight: 700; margin-top: 4px; }
+
+    /* COUNTRIES SECTION */
+    .countries-section { padding: 28px 0 10px; animation: fadeUp .5s ease-out .35s both; }
+    .section-heading { text-align: center; margin-bottom: 16px; }
+    .section-heading h2 { font-size: clamp(18px,3.5vw,26px); font-weight: 900; }
+    .section-heading h2 .grad { background: var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .section-heading p { font-size: 13px; color: var(--muted); font-weight: 700; margin-top: 6px; }
+    .countries-display { display: grid; grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); gap: 10px; }
+    .country-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 14px 12px; display: flex; align-items: center; gap: 10px;
+      transition: .2s; position: relative; overflow: hidden;
+    }
+    .country-card.available:hover { border-color: var(--blue); box-shadow: 0 6px 18px rgba(37,99,235,.12); transform: translateY(-2px); }
+    .country-card.unavailable { opacity: .5; filter: grayscale(.6); }
+    .c-flag { font-size: 28px; line-height: 1; flex-shrink: 0; }
+    .c-info { flex: 1; min-width: 0; }
+    .c-name { font-weight: 900; font-size: 13px; line-height: 1.2; }
+    .c-speed { font-size: 10px; color: var(--muted); font-weight: 700; margin-top: 2px; }
+    .c-tag { position:absolute; top:6px; left:6px; font-size:9px; font-weight:900; color:#fff; padding:2px 6px; border-radius:999px; }
+    .c-tag.popular { background: var(--blue); }
+    .c-tag.premium { background: var(--orange); }
+    .c-tag.unavail  { background: var(--red); }
+
+    /* PLANS */
+    .plans-section { padding: 24px 0 16px; }
+    .section-label { text-align:center; font-size:11px; font-weight:800; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+    .plans-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 14px; }
+
+    .card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; position: relative; transition: transform .25s,box-shadow .25s; animation: fadeUp .4s ease-out backwards; min-height: 340px; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(2,6,23,.1); }
+    .card.featured { border-color: rgba(37,99,235,.5); box-shadow: 0 12px 32px rgba(37,99,235,.12); }
+    .card.style-wide { grid-column: span 2; }
+    .card.style-compact { min-height: auto; }
+    .card.style-horizontal { flex-direction:row; align-items:center; flex-wrap:wrap; min-height:auto; }
+    .card.style-horizontal .price-wrap { margin-top: 0; }
+    .card.style-horizontal .list { flex: 1 1 100%; margin-top: 8px; }
+    .card-badge { position:absolute; top:12px; left:12px; background:var(--gradient); color:#fff; font-size:10px; font-weight:900; padding:4px 10px; border-radius:999px; box-shadow:0 4px 12px rgba(37,99,235,.3); animation:badgeBounce 2s ease-in-out infinite; }
+    .card-badge.orange { background: linear-gradient(135deg,var(--orange),var(--red)); }
+    @keyframes badgeBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+    .plan { font-size: 20px; font-weight: 900; line-height: 1; }
+    .desc { font-size: 12px; color: var(--muted); font-weight: 700; }
+    .price-wrap { margin-top: auto; }
+    .price { font-size: clamp(26px,4.5vw,38px); font-weight:900; line-height:1; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .per { font-size: 13px; color: var(--muted); font-weight: 800; }
+    .select { margin-top:8px; border:0; width:100%; padding:13px 14px; border-radius:12px; background:var(--chip); font-weight:900; cursor:pointer; transition:.2s; font-size:13px; font-family:'Cairo',system-ui; }
+    .select:hover { background: #dde3ec; transform: translateY(-1px); }
+    .card.featured .select { background: var(--gradient); color: #fff; box-shadow: 0 8px 20px rgba(37,99,235,.2); }
+    .card.featured .select:hover { filter: brightness(1.08); }
+    .list { margin:8px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; color:#334155; font-weight:700; font-size:12px; }
+    .list li { display:flex; align-items:center; gap:8px; }
+    .check { width:18px; height:18px; border-radius:50%; flex-shrink:0; background:rgba(34,197,94,.13); border:1px solid rgba(34,197,94,.3); display:grid; place-items:center; color:var(--green); font-size:11px; font-weight:900; }
+
+    /* TRUST */
+    .trust { margin:24px 0; background:linear-gradient(135deg,#eff6ff,#e0f2fe); border:1px solid rgba(37,99,235,.18); border-radius:22px; padding:clamp(20px,4vw,30px); text-align:center; }
+    .trust h3 { font-size:clamp(18px,3vw,22px); font-weight:900; color:var(--blue); margin-bottom:16px; }
+    .trust-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .trust-item { background:#fff; border-radius:14px; padding:16px 12px; box-shadow:0 4px 14px rgba(37,99,235,.07); }
+    .trust-icon { font-size:28px; margin-bottom:6px; }
+    .trust-text { font-weight:800; font-size:13px; }
+
+    /* FEATURES */
+    .bigbox { margin:24px 0; background:#fff; border:1px solid var(--border); border-radius:22px; padding:clamp(22px,4vw,38px); text-align:center; box-shadow:var(--shadow); }
+    .bigbox h2 { font-size:clamp(20px,3.5vw,28px); font-weight:900; }
+    .grad { background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .featgrid { margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; text-align:right; max-width:940px; margin-inline:auto; }
+    .feat { display:flex; align-items:center; gap:10px; padding:13px 12px; border-radius:14px; background:#f8fafc; border:1px solid rgba(226,232,240,.8); font-weight:800; font-size:13px; transition:.2s; }
+    .feat:hover { background:#f1f5f9; transform:translateX(-2px); }
+    .feat small { display:block; color:var(--muted); font-weight:700; font-size:11px; margin-top:2px; }
+
+    /* FAQ */
+    .faq-preview { margin:24px 0 32px; background:#fff; border:1px solid var(--border); border-radius:22px; padding:clamp(20px,4vw,28px); box-shadow:var(--shadow); }
+    .faq-preview h2 { font-size:clamp(18px,3vw,24px); font-weight:900; text-align:center; margin-bottom:16px; }
+    .faq-items { display:flex; flex-direction:column; gap:10px; max-width:760px; margin:0 auto; }
+    .faq-item { background:#f8fafc; border:1px solid var(--border); border-radius:14px; padding:13px 16px; cursor:pointer; transition:.15s; }
+    .faq-item:hover { background:#f1f5f9; }
+    .faq-q { font-weight:900; font-size:14px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .faq-toggle { color:var(--blue); font-weight:900; font-size:18px; flex-shrink:0; transition:.2s; }
+    .faq-item.open .faq-toggle { transform:rotate(45deg); }
+    .faq-a { display:none; margin-top:8px; color:var(--muted); font-weight:700; font-size:13px; line-height:1.7; }
+    .faq-item.open .faq-a { display:block; }
+
+    /* FOOTER */
+    footer { padding: 20px 0 36px; }
+    .foot { border-top:1px solid rgba(226,232,240,.8); padding-top:18px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:var(--muted); }
+    .foot a:hover { color: var(--blue); }
+    .foot-links { display:flex; gap:14px; flex-wrap:wrap; }
+    .social-row { display:flex; gap:8px; }
+    .social-btn { width:34px; height:34px; border-radius:50%; background:#f1f5f9; display:grid; place-items:center; font-size:15px; transition:.2s; }
+    .social-btn:hover { background:var(--gradient); color:#fff; transform:translateY(-2px); }
+
+    /* LIVE */
+    .live-badge { position:fixed; bottom:20px; left:16px; background:#fff; border:1px solid var(--border); border-radius:999px; padding:8px 14px; display:flex; align-items:center; gap:7px; font-size:12px; font-weight:800; box-shadow:0 6px 20px rgba(2,6,23,.09); z-index:40; animation:slideLeft .5s ease-out 1s both; }
+    @keyframes slideLeft { from{opacity:0;transform:translateX(-16px)} to{opacity:1;transform:translateX(0)} }
+    .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); animation:blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    /* MODAL */
+    .modal-overlay { position:fixed; inset:0; background:rgba(15,23,42,.75); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:200; display:none; align-items:center; justify-content:center; padding:12px; overflow-y:auto; }
+    .modal-overlay.active { display:flex; }
+    .modal-box { background:#fff; border-radius:20px; width:100%; max-width:680px; padding:clamp(18px,4vw,28px); position:relative; animation:modalIn .28s ease-out; max-height:95vh; overflow-y:auto; }
+    @keyframes modalIn { from{opacity:0;transform:scale(.96) translateY(18px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .modal-close-btn { position:absolute; top:14px; left:14px; width:34px; height:34px; border-radius:50%; background:#f1f5f9; border:none; cursor:pointer; display:grid; place-items:center; font-size:16px; color:var(--muted); transition:.2s; z-index:5; }
+    .modal-close-btn:hover { background:#e2e8f0; transform:rotate(90deg); }
+    .modal-title { font-size:20px; font-weight:900; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:4px; }
+    .modal-sub { font-size:12px; color:var(--muted); font-weight:700; margin-bottom:18px; }
+    .plan-chip { background:linear-gradient(135deg,#eff6ff,#dbeafe); border:1px solid rgba(37,99,235,.18); border-radius:13px; padding:12px 14px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
+    .plan-chip-name { font-weight:900; font-size:16px; color:var(--blue); }
+    .plan-chip-price { font-weight:900; font-size:20px; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .steps { display:flex; justify-content:center; gap:8px; margin-bottom:18px; flex-wrap:wrap; }
+    .step { display:flex; align-items:center; gap:6px; padding:7px 12px; border-radius:999px; background:#f1f5f9; color:var(--muted); font-size:12px; font-weight:800; }
+    .step.active { background:var(--gradient); color:#fff; }
+    .step.completed { background:#dcfce7; color:var(--green); }
+    .step-num { width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,.3); display:grid; place-items:center; font-size:11px; font-weight:900; }
+    .options-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:9px; margin-bottom:16px; }
+    .opt { background:#f8fafc; border:2px solid var(--border); border-radius:12px; padding:11px 13px; display:flex; align-items:center; gap:9px; cursor:pointer; transition:.18s; position:relative; }
+    .opt.disabled { opacity:.45; cursor:not-allowed; pointer-events:none; }
+    .opt:not(.disabled):hover { border-color:var(--blue); background:#eff6ff; }
+    .opt.selected { border-color:var(--blue); background:linear-gradient(135deg,#eff6ff,#dbeafe); box-shadow:0 4px 14px rgba(37,99,235,.14); }
+    .opt-icon { font-size:24px; line-height:1; flex-shrink:0; }
+    .opt-name { font-weight:900; font-size:13px; }
+    .opt-desc { font-size:10px; color:var(--muted); font-weight:700; margin-top:1px; }
+    .opt-badge { font-size:9px; font-weight:900; color:#fff; padding:3px 7px; border-radius:999px; flex-shrink:0; }
+    .opt-badge.green { background:var(--green); }
+    .opt-badge.blue  { background:var(--blue); }
+    .opt-badge.orange{ background:var(--orange); }
+    .unavail-tag { position:absolute; top:5px; left:5px; background:var(--red); color:#fff; font-size:8px; font-weight:900; padding:2px 6px; border-radius:999px; }
+    .os-cats { display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap; }
+    .os-cat { padding:6px 13px; border-radius:999px; border:1.5px solid var(--border); background:#fff; color:var(--muted); font-size:12px; font-weight:800; cursor:pointer; font-family:'Cairo',system-ui; transition:.15s; }
+    .os-cat:hover { border-color:var(--blue); color:var(--blue); }
+    .os-cat.active { background:var(--gradient); color:#fff; border-color:transparent; }
+    .modal-btns { display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; }
+    .mbtn { flex:1; min-width:120px; border:none; padding:13px; border-radius:11px; font-weight:900; font-size:14px; cursor:pointer; font-family:'Cairo',system-ui; transition:.2s; }
+    .mbtn.sec { background:#f1f5f9; color:var(--text); }
+    .mbtn.sec:hover { background:#e2e8f0; }
+    .mbtn.pri { background:var(--gradient); color:#fff; box-shadow:0 8px 18px rgba(37,99,235,.22); }
+    .mbtn.pri:hover { filter:brightness(1.08); transform:translateY(-1px); }
+    .mbtn:disabled { opacity:.45; cursor:not-allowed; transform:none!important; filter:none!important; }
+    .hidden { display:none!important; }
+
+    /* RESPONSIVE */
+    @media (max-width:900px) {
+      .nav-links { display:none; }
+      .card.style-wide { grid-column:span 1; }
+    }
+    @media (max-width:700px) {
+      .nav { margin:8px 8px 0; padding:8px 12px; }
+      .stats { grid-template-columns:repeat(2,1fr); }
+      .countries-display { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
+      .trust-grid { grid-template-columns:1fr; }
+      .featgrid { grid-template-columns:1fr; }
+      .plans-grid { grid-template-columns:1fr; }
+      .card.style-horizontal { flex-direction:column; }
+      .card.featured { transform:none; }
+      .bigbox { padding:22px 14px; }
+      .live-badge { bottom:14px; left:10px; font-size:11px; padding:7px 11px; }
+    }
+    @media (max-width:480px) {
+      .hero-title { font-size:24px; }
+      .stats { grid-template-columns:repeat(2,1fr); gap:8px; }
+      .stat { padding:12px 6px; }
+      .steps { flex-direction:column; align-items:center; }
+      .options-grid { grid-template-columns:1fr; }
+      .modal-btns { flex-direction:column; }
+      .mbtn { min-width:unset; }
+      .modal-box { padding:16px 12px; }
+      .countries-display { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+
+<script>
+var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();
+(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;s1.src='https://embed.tawk.to/698cf1b852a8d51c3f6996c6/1jh790e42';
+s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();
+</script>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="logo"></span>
+      <span>RDP<b>.cheap</b></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">الخطط</a>
+      <a href="support.html">الدعم</a>
+      <a href="faq.html">الأسئلة الشائعة</a>
+      <a href="tos.html">TOS</a>
+    </div>
+    <div class="actions">
+      <a class="nav-btn" href="support.html">تواصل</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge">⚡ خوادم RDP عالية الأداء</div>
+      <h1 class="hero-title">خطط RDP احترافية</h1>
+      <p class="hero-sub">احصل على RDP سريع وموثوق مع IP مخصص، تخزين NVMe، وحماية DDoS. خوادم عالية الأداء بأسعار تنافسية مع دعم 24/7</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-n">99.9%</div><div class="stat-l">وقت التشغيل</div></div>
+        <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">دعم فني</div></div>
+        <div class="stat"><div class="stat-n">15+</div><div class="stat-l">موقع عالمي</div></div>
+        <div class="stat"><div class="stat-n">5K+</div><div class="stat-l">عميل راضي</div></div>
+      </div>
+    </section>
+
+    <!-- COUNTRIES ON PAGE -->
+    <section class="countries-section">
+      <div class="section-heading">
+        <h2>مواقع <span class="grad">السيرفرات</span> المتاحة</h2>
+        <p>اختر الموقع الأقرب لك للحصول على أفضل سرعة وأداء</p>
+      </div>
+      <div class="countries-display" id="countriesDisplay"></div>
+    </section>
+
+    <!-- PLANS -->
+    <section class="plans-section">
+      <div class="section-label">اختر خطتك المناسبة</div>
+      <div class="plans-grid" id="plansGrid"></div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="trust">
+      <h3>لماذا نحن موثوقون؟</h3>
+      <div class="trust-grid">
+        <div class="trust-item"><div class="trust-icon">🔒</div><div class="trust-text">تشفير SSL كامل</div></div>
+        <div class="trust-item"><div class="trust-icon">⚡</div><div class="trust-text">تفعيل فوري</div></div>
+        <div class="trust-item"><div class="trust-icon">💰</div><div class="trust-text">ضمان استرجاع المال</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="bigbox">
+      <h2>كل خطة فيها <span class="grad">كل اللي تحتاجه</span> وزيادة</h2>
+      <div class="featgrid">
+        <div class="feat"><span class="check">✓</span><div>Dedicated IPv4<small>IP ثابت لكل خطة</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>Unlimited Bandwidth<small>بدون حد استهلاك</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>DDoS Protection<small>حماية أساسية</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>24/7 Support<small>دعم طول الوقت</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>Instant Setup<small>تفعيل سريع</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>NVMe Storage<small>أداء سريع</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>99.9% Uptime<small>استقرار عالي</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>Free Reinstall<small>إعادة تثبيت</small></div></div>
+        <div class="feat"><span class="check">✓</span><div>Multiple OS<small>قوالب متعددة</small></div></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-preview">
+      <h2>أسئلة شائعة</h2>
+      <div class="faq-items">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">التفعيل بياخد وقت قد إيه؟<span class="faq-toggle">+</span></div>
+          <div class="faq-a">غالباً فوري أو خلال دقائق. لو فيه ضغط ممكن يتأخر شوية.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">هل فيه IP ثابت؟<span class="faq-toggle">+</span></div>
+          <div class="faq-a">أيوه، Dedicated IPv4 لكل خطة.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">هل أقدر أغير الباسورد؟<span class="faq-toggle">+</span></div>
+          <div class="faq-a">نعم من داخل الـRDP بعد أول دخول، أو من لوحة العميل لو متاحة.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">هل الدفع بالجنيه المصري؟<span class="faq-toggle">+</span></div>
+          <div class="faq-a">أيوه، كل الأسعار معروضة بالجنيه المصري وبتتحسب بسعر الصرف الحالي.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>© 2026 hostrdp - جميع الحقوق محفوظة</div>
+      <div class="foot-links">
+        <a href="support.html">الدعم</a>
+        <a href="faq.html">FAQ</a>
+        <a href="tos.html">TOS</a>
+      </div>
+      <div class="social-row">
+        <a href="https://t.me/hostrdp" class="social-btn" target="_blank" title="Telegram">📨</a>
+        <a href="#" class="social-btn" title="Twitter">🐦</a>
+        <a href="#" class="social-btn" title="Discord">💬</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="live-badge">
+  <span class="live-dot"></span>
+  الدعم متاح الآن
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-box">
+    <button class="modal-close-btn" onclick="closeModal()">✕</button>
+    <div class="steps">
+      <div class="step active" id="step1"><span class="step-num">1</span>اختر الموقع</div>
+      <div class="step" id="step2"><span class="step-num">2</span>اختر النظام</div>
+    </div>
+    <!-- Step 1 -->
+    <div id="countryStep">
+      <div class="modal-title">اختر موقع السيرفر</div>
+      <div class="modal-sub">اختر الدولة الأقرب لك للحصول على أفضل أداء</div>
+      <div class="plan-chip">
+        <div>
+          <div class="plan-chip-name" id="modalPlanName">–</div>
+          <small style="color:var(--muted);font-weight:700;font-size:11px">خطة مختارة</small>
+        </div>
+        <div class="plan-chip-price" id="modalPlanPrice">–</div>
+      </div>
+      <div class="options-grid" id="modalCountriesGrid"></div>
+      <div class="modal-btns">
+        <button class="mbtn sec" onclick="closeModal()">إلغاء</button>
+        <button class="mbtn pri" id="nextBtn" onclick="goToOSStep()" disabled>التالي ›</button>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div id="osStep" class="hidden">
+      <div class="modal-title">اختر نظام التشغيل</div>
+      <div class="modal-sub">اختر نظام التشغيل المناسب لاحتياجاتك</div>
+      <div class="os-cats">
+        <button class="os-cat active" onclick="filterOS('all',this)">الكل</button>
+        <button class="os-cat" onclick="filterOS('windows',this)">Windows</button>
+        <button class="os-cat" onclick="filterOS('linux',this)">Linux</button>
+      </div>
+      <div class="options-grid" id="osGrid"></div>
+      <div class="modal-btns">
+        <button class="mbtn sec" onclick="backToCountry()">‹ رجوع</button>
+        <button class="mbtn pri" id="confirmBtn" onclick="confirmOrder()" disabled>تأكيد الطلب ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const EGP_RATE = 50;
+
+  const plans = [
+    { id:1, name:'Silver',   desc:'مثالي للمبتدئين',      price:10, style:'normal',   badge:'',              badgeStyle:'', features:['4 أنوية معالج','8GB RAM','75GB NVMe','باندويث لا محدود','منفذ 400Mbps'] },
+    { id:2, name:'Silver+',  desc:'قوة أكبر، قيمة أفضل', price:13, style:'normal',   badge:'',              badgeStyle:'', features:['6 أنوية معالج','12GB RAM','100GB NVMe','باندويث لا محدود','منفذ 1Gbps'] },
+    { id:3, name:'Gold',     desc:'للمشاريع المتنامية',   price:20, style:'normal',   badge:'',              badgeStyle:'', features:['8 أنوية معالج','24GB RAM','200GB NVMe','باندويث لا محدود','منفذ 1.5Gbps'] },
+    { id:4, name:'Platinum', desc:'الخيار الأمثل',        price:30, style:'featured', badge:'الأكثر شعبية', badgeStyle:'', features:['10 أنوية معالج','48GB RAM','300GB NVMe','باندويث لا محدود','منفذ 2Gbps'] }
+  ];
+
+  const countries = [
+    { name:'الولايات المتحدة', flag:'🇺🇸', speed:'سرعة عالية جداً',  type:'popular',  code:'us', enabled:true  },
+    { name:'ألمانيا',          flag:'🇩🇪', speed:'سرعة عالية',        type:'popular',  code:'de', enabled:true  },
+    { name:'فرنسا',            flag:'🇫🇷', speed:'سرعة عالية',        type:'standard', code:'fr', enabled:true  },
+    { name:'هولندا',           flag:'🇳🇱', speed:'سرعة فائقة',        type:'popular',  code:'nl', enabled:true  },
+    { name:'المملكة المتحدة',  flag:'🇬🇧', speed:'سرعة عالية',        type:'standard', code:'uk', enabled:true  },
+    { name:'كندا',             flag:'🇨🇦', speed:'سرعة عالية',        type:'standard', code:'ca', enabled:true  },
+    { name:'سنغافورة',         flag:'🇸🇬', speed:'سرعة ممتازة',       type:'premium',  code:'sg', enabled:true  },
+    { name:'اليابان',          flag:'🇯🇵', speed:'سرعة فائقة',        type:'premium',  code:'jp', enabled:false },
+    { name:'أستراليا',         flag:'🇦🇺', speed:'سرعة جيدة',         type:'standard', code:'au', enabled:false },
+    { name:'الإمارات',         flag:'🇦🇪', speed:'سرعة ممتازة',       type:'popular',  code:'ae', enabled:true  }
+  ];
+
+  const operatingSystems = [
+    { name:'Windows Server 2022', icon:'🪟', desc:'الإصدار الأحدث',    cat:'windows', popular:true  },
+    { name:'Windows Server 2019', icon:'🪟', desc:'مستقر وموثوق',      cat:'windows', popular:true  },
+    { name:'Windows Server 2016', icon:'🪟', desc:'إصدار كلاسيكي',     cat:'windows', popular:false },
+    { name:'Windows 11 Pro',      icon:'🪟', desc:'للاستخدام الشخصي',  cat:'windows', popular:false },
+    { name:'Windows 10 Pro',      icon:'🪟', desc:'للاستخدام الشخصي',  cat:'windows', popular:false },
+    { name:'Ubuntu 24.04 LTS',    icon:'🐧', desc:'الأحدث - دعم طويل', cat:'linux',   popular:true  },
+    { name:'Ubuntu 22.04 LTS',    icon:'🐧', desc:'مستقر - دعم طويل',  cat:'linux',   popular:true  },
+    { name:'Ubuntu 20.04 LTS',    icon:'🐧', desc:'موثوق ومستقر',      cat:'linux',   popular:false },
+    { name:'Debian 12 (Bookworm)',icon:'🌀', desc:'مستقر جداً',         cat:'linux',   popular:true  },
+    { name:'Debian 11 (Bullseye)',icon:'🌀', desc:'مستقر وآمن',         cat:'linux',   popular:false },
+    { name:'AlmaLinux 9',         icon:'🔷', desc:'بديل CentOS',        cat:'linux',   popular:true  },
+    { name:'Rocky Linux 9',       icon:'🪨', desc:'بديل CentOS',        cat:'linux',   popular:false },
+    { name:'CentOS 7',            icon:'💠', desc:'كلاسيكي ومستقر',    cat:'linux',   popular:false },
+    { name:'Fedora 40',           icon:'🎩', desc:'أحدث التقنيات',      cat:'linux',   popular:false },
+    { name:'Arch Linux',          icon:'⚙️', desc:'للمتقدمين',         cat:'linux',   popular:false },
+    { name:'CloudLinux 8',        icon:'☁️', desc:'محسّن للويب',        cat:'linux',   popular:false }
+  ];
+
+  function egp(usd) { return (usd * EGP_RATE).toLocaleString('ar-EG') + ' ج.م'; }
+
+  /* RENDER COUNTRIES ON PAGE */
+  function renderCountriesDisplay() {
+    document.getElementById('countriesDisplay').innerHTML = countries.map(c => {
+      const tag = c.type === 'popular' ? '<span class="c-tag popular">شائع</span>'
+                : c.type === 'premium' ? '<span class="c-tag premium">Premium</span>' : '';
+      const utag = !c.enabled ? '<span class="c-tag unavail">غير متاح</span>' : '';
+      return `
+        <div class="country-card ${c.enabled ? 'available' : 'unavailable'}">
+          ${tag}${utag}
+          <span class="c-flag">${c.flag}</span>
+          <div class="c-info">
+            <div class="c-name">${c.name}</div>
+            <div class="c-speed">${c.speed}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  /* RENDER PLANS */
+  function renderPlans() {
+    document.getElementById('plansGrid').innerHTML = plans.map((plan, i) => {
+      let cls = 'card';
+      if (plan.style === 'featured')   cls += ' featured';
+      if (plan.style === 'wide')       cls += ' style-wide';
+      if (plan.style === 'horizontal') cls += ' style-horizontal';
+      if (plan.style === 'compact')    cls += ' style-compact';
+      const badge  = plan.badge ? `<div class="card-badge ${plan.badgeStyle === 'custom-badge' ? 'orange' : ''}">${plan.badge}</div>` : '';
+      const feats  = plan.features.map(f => `<li><span class="check">✓</span>${f}</li>`).join('');
+      const pEGP   = egp(plan.price);
+      const planJ  = JSON.stringify(plan).replace(/"/g,'&quot;');
+      if (plan.style === 'wide') {
+        return `<article class="${cls}" style="animation-delay:${i*.08}s">${badge}
+          <div style="flex:1;border-left:1px solid var(--border);padding-left:18px;margin-left:18px">
+            <h3 class="plan">${plan.name}</h3><p class="desc">${plan.desc}</p>
+            <ul class="list" style="margin-top:10px">${feats}</ul>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;min-width:150px">
+            <div class="price-wrap"><div class="price">${pEGP} <span class="per">/شهر</span></div></div>
+            <button class="select" onclick="openModal(${planJ})">اختر الخطة</button>
+          </div></article>`;
+      }
+      return `<article class="${cls}" style="animation-delay:${i*.08}s">${badge}
+        <h3 class="plan">${plan.name}</h3><p class="desc">${plan.desc}</p>
+        <div class="price-wrap"><div class="price">${pEGP} <span class="per">/شهر</span></div></div>
+        <button class="select" onclick="openModal(${planJ})">اختر الخطة</button>
+        <ul class="list">${feats}</ul></article>`;
+    }).join('');
+  }
+
+  /* ORDER MODAL */
+  let selectedCountry = null, selectedOS = null, currentPlan = null;
+
+  function openModal(plan) {
+    currentPlan = plan; selectedCountry = null; selectedOS = null;
+    document.getElementById('modalPlanName').textContent  = plan.name;
+    document.getElementById('modalPlanPrice').textContent = egp(plan.price) + ' / شهر';
+    renderModalCountries();
+    document.getElementById('countryStep').classList.remove('hidden');
+    document.getElementById('osStep').classList.add('hidden');
+    document.getElementById('step1').className = 'step active';
+    document.getElementById('step2').className = 'step';
+    document.getElementById('nextBtn').disabled = true;
+    document.getElementById('orderModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function renderModalCountries() {
+    document.getElementById('modalCountriesGrid').innerHTML = countries.map((c,idx) => {
+      const dis = !c.enabled;
+      const tb = c.type==='popular' ? '<span class="opt-badge blue">شائع</span>'
+               : c.type==='premium' ? '<span class="opt-badge orange">Premium</span>' : '';
+      return `<div class="opt ${dis?'disabled':''}" data-idx="${idx}" ${!dis?`onclick="selectCountry(${idx},this)"`:''}>
+        ${dis?'<span class="unavail-tag">غير متاح</span>':''}
+        <span class="opt-icon">${c.flag}</span>
+        <div><div class="opt-name">${c.name}</div><div class="opt-desc">${c.speed}</div></div>
+        ${!dis?tb:''}</div>`;
+    }).join('');
+  }
+
+  function selectCountry(idx, el) {
+    if (!countries[idx].enabled) return;
+    selectedCountry = countries[idx];
+    document.querySelectorAll('#modalCountriesGrid .opt').forEach(o=>o.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('nextBtn').disabled = false;
+  }
+
+  function goToOSStep() {
+    if (!selectedCountry) return;
+    document.getElementById('step1').className = 'step completed';
+    document.getElementById('step2').className = 'step active';
+    document.getElementById('countryStep').classList.add('hidden');
+    document.getElementById('osStep').classList.remove('hidden');
+    document.querySelectorAll('.os-cat').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.os-cat').classList.add('active');
+    renderOS('all');
+  }
+
+  function backToCountry() {
+    document.getElementById('step1').className = 'step active';
+    document.getElementById('step2').className = 'step';
+    document.getElementById('countryStep').classList.remove('hidden');
+    document.getElementById('osStep').classList.add('hidden');
+  }
+
+  function renderOS(cat) {
+    const list = cat==='all' ? operatingSystems : operatingSystems.filter(o=>o.cat===cat);
+    document.getElementById('osGrid').innerHTML = list.map(o =>
+      `<div class="opt" onclick="selectOS('${o.name.replace(/'/g,"\\'")}',this)">
+        <span class="opt-icon">${o.icon}</span>
+        <div><div class="opt-name">${o.name}</div><div class="opt-desc">${o.desc}</div></div>
+        ${o.popular?'<span class="opt-badge blue">شائع</span>':''}</div>`
+    ).join('');
+  }
+
+  function filterOS(cat, btn) {
+    document.querySelectorAll('.os-cat').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedOS = null;
+    document.getElementById('confirmBtn').disabled = true;
+    renderOS(cat);
+  }
+
+  function selectOS(name, el) {
+    selectedOS = name;
+    document.querySelectorAll('#osGrid .opt').forEach(o=>o.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('confirmBtn').disabled = false;
+  }
+
+  function confirmOrder() {
+    if (!selectedCountry || !selectedOS) return;
+    const pEGP = egp(currentPlan.price) + '/شهر';
+    const pUSD = '$' + currentPlan.price + '/شهر';
+    const msg = `✅ طلب جديد\n━━━━━━━━━━━━━\n📦 الخطة: ${currentPlan.name}\n💰 السعر: ${pEGP} (${pUSD})\n🌍 الدولة: ${selectedCountry.name}\n💻 نظام: ${selectedOS}\n━━━━━━━━━━━━━`;
+    closeModal();
+    setTimeout(() => {
+      if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') {
+        Tawk_API.maximize();
+        setTimeout(() => {
+          if (typeof Tawk_API.addEvent === 'function') Tawk_API.addEvent('طلب جديد',{plan:currentPlan.name,price:pEGP,country:selectedCountry.name,os:selectedOS});
+          if (typeof Tawk_API.sendMessage === 'function') Tawk_API.sendMessage(msg);
+        }, 800);
+      } else { alert('جاري التحضير... سيتم فتح الشات قريباً'); }
+    }, 300);
+  }
+
+  document.getElementById('orderModal').addEventListener('click', e => { if (e.target===e.currentTarget) closeModal(); });
+
+  renderCountriesDisplay();
+  renderPlans();
+</script>
+</body>
+</html>
