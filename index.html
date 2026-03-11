@@ -413,7 +413,7 @@ s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore
 </div>
 
 <script>
-  const EGP_RATE = 50;
+  const EGP_RATE = 53;
 
   const plans = [
     { id:1, name:'Silver',   desc:'مثالي للمبتدئين',      price:10, style:'normal',   badge:'',              badgeStyle:'', features:['4 أنوية معالج','8GB RAM','75GB NVMe','باندويث لا محدود','منفذ 400Mbps'] },
@@ -431,27 +431,24 @@ s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore
     { name:'كندا',             flag:'🇨🇦', speed:'سرعة عالية',        type:'standard', code:'ca', enabled:true  },
     { name:'سنغافورة',         flag:'🇸🇬', speed:'سرعة ممتازة',       type:'premium',  code:'sg', enabled:true  },
     { name:'اليابان',          flag:'🇯🇵', speed:'سرعة فائقة',        type:'premium',  code:'jp', enabled:false },
-    { name:'أستراليا',         flag:'🇦🇺', speed:'سرعة جيدة',         type:'standard', code:'au', enabled:false },
-    { name:'الإمارات',         flag:'🇦🇪', speed:'سرعة ممتازة',       type:'popular',  code:'ae', enabled:true  }
+    { name:'إيطاليا',         flag:'🇮🇹', speed:'سرعة جيدة',         type:'standard', code:'au', enabled:false },
+    { name:'بولندا',         flag:'🇵🇱', speed:'سرعة ممتازة',       type:'popular',  code:'PL', enabled:true  }
   ];
 
   const operatingSystems = [
-    { name:'Windows Server 2022', icon:'🪟', desc:'الإصدار الأحدث',    cat:'windows', popular:true  },
-    { name:'Windows Server 2019', icon:'🪟', desc:'مستقر وموثوق',      cat:'windows', popular:true  },
-    { name:'Windows Server 2016', icon:'🪟', desc:'إصدار كلاسيكي',     cat:'windows', popular:false },
-    { name:'Windows 11 Pro',      icon:'🪟', desc:'للاستخدام الشخصي',  cat:'windows', popular:false },
-    { name:'Windows 10 Pro',      icon:'🪟', desc:'للاستخدام الشخصي',  cat:'windows', popular:false },
-    { name:'Ubuntu 24.04 LTS',    icon:'🐧', desc:'الأحدث - دعم طويل', cat:'linux',   popular:true  },
-    { name:'Ubuntu 22.04 LTS',    icon:'🐧', desc:'مستقر - دعم طويل',  cat:'linux',   popular:true  },
-    { name:'Ubuntu 20.04 LTS',    icon:'🐧', desc:'موثوق ومستقر',      cat:'linux',   popular:false },
-    { name:'Debian 12 (Bookworm)',icon:'🌀', desc:'مستقر جداً',         cat:'linux',   popular:true  },
-    { name:'Debian 11 (Bullseye)',icon:'🌀', desc:'مستقر وآمن',         cat:'linux',   popular:false },
-    { name:'AlmaLinux 9',         icon:'🔷', desc:'بديل CentOS',        cat:'linux',   popular:true  },
-    { name:'Rocky Linux 9',       icon:'🪨', desc:'بديل CentOS',        cat:'linux',   popular:false },
-    { name:'CentOS 7',            icon:'💠', desc:'كلاسيكي ومستقر',    cat:'linux',   popular:false },
-    { name:'Fedora 40',           icon:'🎩', desc:'أحدث التقنيات',      cat:'linux',   popular:false },
-    { name:'Arch Linux',          icon:'⚙️', desc:'للمتقدمين',         cat:'linux',   popular:false },
-    { name:'CloudLinux 8',        icon:'☁️', desc:'محسّن للويب',        cat:'linux',   popular:false }
+    { name:'Windows Server 2022', icon:'🪟', desc:'',    cat:'windows', popular:true  },
+    { name:'Windows Server 2019', icon:'🪟', desc:'',      cat:'windows', popular:true  },
+    { name:'Ubuntu 24.04 LTS',    icon:'🐧', desc:'', cat:'linux',   popular:true  },
+    { name:'Ubuntu 22.04 LTS',    icon:'🐧', desc:'',  cat:'linux',   popular:true  },
+    { name:'Ubuntu 20.04 LTS',    icon:'🐧', desc:'',      cat:'linux',   popular:false },
+    { name:'Debian 12 (Bookworm)',icon:'🌀', desc:' ',         cat:'linux',   popular:true  },
+    { name:'Debian 11 (Bullseye)',icon:'🌀', desc:'',         cat:'linux',   popular:false },
+    { name:'AlmaLinux 9',         icon:'🔷', desc:' CentOS',        cat:'linux',   popular:true  },
+    { name:'Rocky Linux 9',       icon:'🪨', desc:' CentOS',        cat:'linux',   popular:false },
+    { name:'CentOS 7',            icon:'💠', desc:'',    cat:'linux',   popular:false },
+    { name:'Fedora 40',           icon:'🎩', desc:'' ',      cat:'linux',   popular:false },
+    { name:'Arch Linux',          icon:'⚙️', desc:'',         cat:'linux',   popular:false },
+    { name:'CloudLinux 8',        icon:'☁️', desc:'',        cat:'linux',   popular:false }
   ];
 
   function egp(usd) { return (usd * EGP_RATE).toLocaleString('ar-EG') + ' ج.م'; }
