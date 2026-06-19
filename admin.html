@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | RDP.cheap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0f172a;
+            --bg2: #1e293b;
+            --card: #334155;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --blue: #3b82f6;
+            --blue2: #2563eb;
+            --green: #22c55e;
+            --red: #ef4444;
+            --orange: #f97316;
+            --gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        /* Login Screen */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+        }
+
+        .login-box {
+            background: var(--bg2);
+            border: 1px solid var(--card);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 18px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .login-sub {
+            color: var(--muted);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: right;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1.5px solid var(--card);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .login-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 13px;
+            display: none;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--bg2);
+            border-left: 1px solid var(--card);
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 10px;
+        }
+
+        .sidebar-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .sidebar-logo-text {
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .sidebar-logo-text span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 4px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .nav-item.active {
+            background: var(--gradient);
+        }
+
+        .nav-item-icon {
+            font-size: 18px;
+        }
+
+        .logout-btn {
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--red);
+            color: var(--red);
+            border-radius: 10px;
+            width: 100%;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        .main-content {
+            margin-right: 260px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--card);
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: 900;
+        }
+
+        .header-btn {
+            padding: 10px 20px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .header-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg2);
+            border: 1px solid var(--card);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .stat-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card-value {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .stat-card-label {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Data Table */
+        .data-table {
+            background: var(--bg2);
+            border: 1px solid var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: right;
+            border-bottom: 1px solid var(--card);
+        }
+
+        th {
+            background: var(--card);
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--green);
+        }
+
+        .badge-warning {
+            background: rgba(249, 115, 22, 0.2);
+            color: var(--orange);
+        }
+
+        .badge-info {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--blue);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .edit-btn {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--blue);
+        }
+
+        .delete-btn {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--red);
+        }
+
+        .action-btn:hover {
+            filter: brightness(1.2);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg2);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--card);
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .modal-close:hover {
+            background: var(--red);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+        }
+
+        .modal-btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--muted);
+        }
+
+        .modal-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Settings */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        /* Toggle Switch */
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--card);
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: var(--blue);
+        }
+
+        .toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-left: none;
+                border-bottom: 1px solid var(--card);
+            }
+
+            .main-content {
+                margin-right: 0;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">🎛️</div>
+            <h1 class="login-title">لوحة التحكم</h1>
+            <p class="login-sub">سجل دخولك لإدارة الموقع</p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-input" id="username" placeholder="أدخل اسم المستخدم" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-input" id="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="login-btn">تسجيل الدخول</button>
+            </form>
+
+            <div class="login-error" id="loginError">
+                اسم المستخدم أو كلمة المرور غير صحيحة
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">🎛️</div>
+                <div class="sidebar-logo-text">RDP<span>.cheap</span></div>
+            </div>
+
+            <div class="nav-item active" onclick="showSection('dashboard')">
+                <span class="nav-item-icon">📊</span>
+                لوحة التحكم
+            </div>
+            <div class="nav-item" onclick="showSection('plans')">
+                <span class="nav-item-icon">📦</span>
+                الخطط
+            </div>
+            <div class="nav-item" onclick="showSection('faq')">
+                <span class="nav-item-icon">❓</span>
+                الأسئلة الشائعة
+            </div>
+            <div class="nav-item" onclick="showSection('countries')">
+                <span class="nav-item-icon">🌍</span>
+                المواقع
+            </div>
+            <div class="nav-item" onclick="showSection('os')">
+                <span class="nav-item-icon">💻</span>
+                أنظمة التشغيل
+            </div>
+            <div class="nav-item" onclick="showSection('settings')">
+                <span class="nav-item-icon">⚙️</span>
+                الإعدادات
+            </div>
+
+            <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section class="page-section active" id="section-dashboard">
+                <div class="header">
+                    <h1 class="header-title">لوحة التحكم</h1>
+                    <a href="index.html" class="header-btn" target="_blank">عرض الموقع</a>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background: rgba(59, 130, 246, 0.2); color: var(--blue);">📦</div>
+                        <div class="stat-card-value" id="totalPlans">0</div>
+                        <div class="stat-card-label">الخطط</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background: rgba(34, 197, 94, 0.2); color: var(--green);">❓</div>
+                        <div class="stat-card-value" id="totalFAQs">0</div>
+                        <div class="stat-card-label">الأسئلة الشائعة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background: rgba(249, 115, 22, 0.2); color: var(--orange);">🌍</div>
+                        <div class="stat-card-value" id="totalCountries">0</div>
+                        <div class="stat-card-label">الموقع</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">💻</div>
+                        <div class="stat-card-value" id="totalOS">0</div>
+                        <div class="stat-card-label">أنظمة التشغيل</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plans Section -->
+            <section class="page-section" id="section-plans">
+                <div class="header">
+                    <h1 class="header-title">إدارة الخطط</h1>
+                    <button class="header-btn" onclick="openModal('planModal')">إضافة خطة جديدة</button>
+                </div>
+
+                <div class="data-table">
+                    <div class="table-header">
+                        <span class="table-title">جميع الخطط</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>السعر</th>
+                                <th>CPU</th>
+                                <th>RAM</th>
+                                <th>التخزين</th>
+                                <th>الحالة</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="plansTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="page-section" id="section-faq">
+                <div class="header">
+                    <h1 class="header-title">إدارة الأسئلة الشائعة</h1>
+                    <button class="header-btn" onclick="openModal('faqModal')">إضافة سؤال جديد</button>
+                </div>
+
+                <div class="data-table">
+                    <div class="table-header">
+                        <span class="table-title">جميع الأسئلة</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>السؤال</th>
+                                <th>الفئة</th>
+                                <th>الحالة</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="faqTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Countries Section -->
+            <section class="page-section" id="section-countries">
+                <div class="header">
+                    <h1 class="header-title">إدارة المواقع</h1>
+                    <button class="header-btn" onclick="openModal('countryModal')">إضافة موقع جديد</button>
+                </div>
+
+                <div class="data-table">
+                    <div class="table-header">
+                        <span class="table-title">جميع المواقع</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>العلم</th>
+                                <th>الاسم</th>
+                                <th>السرعة</th>
+                                <th>النوع</th>
+                                <th>الحالة</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="countriesTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- OS Section -->
+            <section class="page-section" id="section-os">
+                <div class="header">
+                    <h1 class="header-title">إدارة أنظمة التشغيل</h1>
+                    <button class="header-btn" onclick="openModal('osModal')">إضافة نظام جديد</button>
+                </div>
+
+                <div class="data-table">
+                    <div class="table-header">
+                        <span class="table-title">جميع الأنظمة</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الأيقونة</th>
+                                <th>الاسم</th>
+                                <th>الفئة</th>
+                                <th>شائع</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="osTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="page-section" id="section-settings">
+                <div class="header">
+                    <h1 class="header-title">إعدادات الموقع</h1>
+                </div>
+
+                <div class="data-table" style="padding: 24px;">
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label class="form-label">اسم الموقع</label>
+                            <input type="text" class="form-input" id="siteName" onchange="updateSetting('site_name', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">رابط الموقع</label>
+                            <input type="text" class="form-input" id="siteUrl" onchange="updateSetting('site_url', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">إيميل الدعم</label>
+                            <input type="email" class="form-input" id="supportEmail" onchange="updateSetting('support_email', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">يوزر Telegram</label>
+                            <input type="text" class="form-input" id="telegramUsername" onchange="updateSetting('telegram_username', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">سعر الصرف (ج.م)</label>
+                            <input type="number" class="form-input" id="currencyRate" onchange="updateSetting('currency_rate', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Formspree ID</label>
+                            <input type="text" class="form-input" id="formspreeId" onchange="updateSetting('formspree_id', this.value)">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 24px; padding: 16px; background: var(--card); border-radius: 12px; text-align: center;">
+                        <p style="color: var(--green); font-weight: 700;">✓ تم حفظ الإعدادات بنجاح</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Plan Modal -->
+    <div class="modal" id="planModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="planModalTitle">إضافة خطة جديدة</h2>
+                <button class="modal-close" onclick="closeModal('planModal')">×</button>
+            </div>
+            <form id="planForm" onsubmit="savePlan(event)">
+                <input type="hidden" id="planId">
+                <div class="form-group">
+                    <label class="form-label">الاسم (English)</label>
+                    <input type="text" class="form-input" id="planName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الاسم (العربي)</label>
+                    <input type="text" class="form-input" id="planNameAr" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">السعر ($)</label>
+                    <input type="number" class="form-input" id="planPrice" required step="0.01">
+                </div>
+                <div class="settings-grid">
+                    <div class="form-group">
+                        <label class="form-label">CPU (أنوية)</label>
+                        <input type="number" class="form-input" id="planCpu" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">RAM (GB)</label>
+                        <input type="number" class="form-input" id="planRam" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">التخزين (GB)</label>
+                        <input type="number" class="form-input" id="planStorage" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">سرعة المنفذ</label>
+                        <input type="text" class="form-input" id="planSpeed" placeholder="مثال: 1Gbps" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الوصف (English)</label>
+                    <input type="text" class="form-input" id="planDesc">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الوصف (العربي)</label>
+                    <input type="text" class="form-input" id="planDescAr">
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 12px;">
+                    <label class="toggle">
+                        <input type="checkbox" id="planFeatured">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <label class="form-label" style="margin: 0;">الخطة مميزة (الأكثر شعبية)</label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModal('planModal')">إلغاء</button>
+                    <button type="submit" class="modal-btn modal-btn-primary">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal" id="faqModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="faqModalTitle">إضافة سؤال جديد</h2>
+                <button class="modal-close" onclick="closeModal('faqModal')">×</button>
+            </div>
+            <form id="faqForm" onsubmit="saveFaq(event)">
+                <input type="hidden" id="faqId">
+                <div class="form-group">
+                    <label class="form-label">الفئة</label>
+                    <select class="form-input" id="faqCategory" required>
+                        <option value="general">عام</option>
+                        <option value="billing">الفوترة</option>
+                        <option value="technical">تقني</option>
+                        <option value="security">الأمان</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">السؤال (English)</label>
+                    <input type="text" class="form-input" id="faqQuestion" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">السؤال (العربي)</label>
+                    <input type="text" class="form-input" id="faqQuestionAr" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الإجابة (English)</label>
+                    <textarea class="form-input" id="faqAnswer" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الإجابة (العربي)</label>
+                    <textarea class="form-input" id="faqAnswerAr" rows="3" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModal('faqModal')">إلغاء</button>
+                    <button type="submit" class="modal-btn modal-btn-primary">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Country Modal -->
+    <div class="modal" id="countryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="countryModalTitle">إضافة موقع جديد</h2>
+                <button class="modal-close" onclick="closeModal('countryModal')">×</button>
+            </div>
+            <form id="countryForm" onsubmit="saveCountry(event)">
+                <input type="hidden" id="countryId">
+                <div class="form-group">
+                    <label class="form-label">الاسم (English)</label>
+                    <input type="text" class="form-input" id="countryName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الاسم (العربي)</label>
+                    <input type="text" class="form-input" id="countryNameAr" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الكود (مثل: us, de)</label>
+                    <input type="text" class="form-input" id="countryCode" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">النوع</label>
+                    <select class="form-input" id="countryType" required>
+                        <option value="standard">Standard</option>
+                        <option value="popular">Popular (شائع)</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 12px;">
+                    <label class="toggle">
+                        <input type="checkbox" id="countryEnabled" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <label class="form-label" style="margin: 0;">متاح</label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModal('countryModal')">إلغاء</button>
+                    <button type="submit" class="modal-btn modal-btn-primary">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- OS Modal -->
+    <div class="modal" id="osModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="osModalTitle">إضافة نظام جديد</h2>
+                <button class="modal-close" onclick="closeModal('osModal')">×</button>
+            </div>
+            <form id="osForm" onsubmit="saveOS(event)">
+                <input type="hidden" id="osId">
+                <div class="form-group">
+                    <label class="form-label">الفئة</label>
+                    <select class="form-input" id="osCategory" required>
+                        <option value="windows">Windows</option>
+                        <option value="linux">Linux</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الاسم</label>
+                    <input type="text" class="form-input" id="osName" required placeholder="مثال: Windows Server 2022">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الوصف (English)</label>
+                    <input type="text" class="form-input" id="osDesc">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الوصف (العربي)</label>
+                    <input type="text" class="form-input" id="osDescAr">
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 12px;">
+                    <label class="toggle">
+                        <input type="checkbox" id="osPopular">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <label class="form-label" style="margin: 0;">شائع</label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModal('osModal')">إلغاء</button>
+                    <button type="submit" class="modal-btn modal-btn-primary">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Data Store
+        let plans = [];
+        let faqs = [];
+        let countries = [];
+        let operatingSystems = [];
+        let settings = {};
+
+        // Load data from localStorage
+        function loadData() {
+            const storedPlans = localStorage.getItem('rdp_plans');
+            const storedFaqs = localStorage.getItem('rdp_faqs');
+            const storedCountries = localStorage.getItem('rdp_countries');
+            const storedOS = localStorage.getItem('rdp_os');
+            const storedSettings = localStorage.getItem('rdp_settings');
+
+            if (storedPlans) plans = JSON.parse(storedPlans);
+            else {
+                plans = [
+                    {id: 1, name: 'Silver', name_ar: 'سيلفر', description: 'Perfect for beginners', description_ar: 'مثالي للمبتدئين', price: 10, cpu_cores: 4, ram_gb: 8, storage_gb: 75, port_speed: '400Mbps', is_featured: false, is_active: true, display_order: 1},
+                    {id: 2, name: 'Silver+', name_ar: 'سيلفر بلس', description: 'More power', description_ar: 'قوة أكبر', price: 13, cpu_cores: 6, ram_gb: 12, storage_gb: 100, port_speed: '1Gbps', is_featured: false, is_active: true, display_order: 2},
+                    {id: 3, name: 'Gold', name_ar: 'جولد', description: 'For growing projects', description_ar: 'للمشاريع المتنامية', price: 20, cpu_cores: 8, ram_gb: 24, storage_gb: 200, port_speed: '1.5Gbps', is_featured: false, is_active: true, display_order: 3},
+                    {id: 4, name: 'Platinum', name_ar: 'بلاتنيوم', description: 'The optimal choice', description_ar: 'الخيار الأمثل', price: 30, cpu_cores: 10, ram_gb: 48, storage_gb: 300, port_speed: '2Gbps', is_featured: true, is_active: true, display_order: 4}
+                ];
+                savePlans();
+            }
+
+            if (storedFaqs) faqs = JSON.parse(storedFaqs);
+            else {
+                faqs = [
+                    {id: 1, category: 'general', question: 'What is RDP?', question_ar: 'إيه هو RDP؟', answer: 'RDP = Remote Desktop Protocol', answer_ar: 'بروتوكول سطح المكتب عن بُعد', active: true},
+                    {id: 2, category: 'billing', question: 'What payment methods?', question_ar: 'أيه طرق الدفع؟', answer: 'Fawry, Vodafone Cash, Bank transfer', answer_ar: 'فوري، فودافون كاش، تحويل بنكي', active: true}
+                ];
+                saveFaqs();
+            }
+
+            if (storedCountries) countries = JSON.parse(storedCountries);
+            else {
+                countries = [
+                    {id: 1, name: 'United States', name_ar: 'الولايات المتحدة', flag: '🇺🇸', speed: 'Very High', speed_ar: 'سرعة عالية جداً', type: 'popular', code: 'us', enabled: true, display_order: 1},
+                    {id: 2, name: 'Germany', name_ar: 'ألمانيا', flag: '🇩🇪', speed: 'High', speed_ar: 'سرعة عالية', type: 'popular', code: 'de', enabled: true, display_order: 2},
+                    {id: 3, name: 'Netherlands', name_ar: 'هولندا', flag: '🇳🇱', speed: 'Ultra', speed_ar: 'سرعة فائقة', type: 'popular', code: 'nl', enabled: true, display_order: 3},
+                    {id: 4, name: 'UAE', name_ar: 'الإمارات', flag: '🇦🇪', speed: 'Excellent', speed_ar: 'سرعة ممتازة', type: 'popular', code: 'ae', enabled: true, display_order: 4}
+                ];
+                saveCountries();
+            }
+
+            if (storedOS) operatingSystems = JSON.parse(storedOS);
+            else {
+                operatingSystems = [
+                    {id: 1, name: 'Windows Server 2022', icon: '🪟', description: 'Latest version', description_ar: 'الإصدار الأحدث', category: 'windows', popular: true},
+                    {id: 2, name: 'Windows Server 2019', icon: '🪟', description: 'Stable', description_ar: 'مستقر', category: 'windows', popular: true},
+                    {id: 3, name: 'Ubuntu 24.04 LTS', icon: '🐧', description: 'Latest LTS', description_ar: 'الأحدث', category: 'linux', popular: true}
+                ];
+                saveOS();
+            }
+
+            if (storedSettings) settings = JSON.parse(storedSettings);
+            else {
+                settings = {site_name: 'RDP.cheap', site_url: 'https://rdp.cheap', support_email: 'support@rdp.cheap', telegram_username: 'hostrdp', currency_rate: 50, formspree_id: 'xeeledyg'};
+                saveSettings();
+            }
+        }
+
+        function savePlans() { localStorage.setItem('rdp_plans', JSON.stringify(plans)); }
+        function saveFaqs() { localStorage.setItem('rdp_faqs', JSON.stringify(faqs)); }
+        function saveCountries() { localStorage.setItem('rdp_countries', JSON.stringify(countries)); }
+        function saveOS() { localStorage.setItem('rdp_os', JSON.stringify(operatingSystems)); }
+        function saveSettings() { localStorage.setItem('rdp_settings', JSON.stringify(settings)); }
+
+        // Login
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Default credentials: admin / admin
+            if (username === 'admin' && password === 'admin') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').classList.add('active');
+                loadData();
+                renderAll();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        }
+
+        function logout() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboard').classList.remove('active');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function showSection(section) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('section-' + section).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            event.target.closest('.nav-item').classList.add('active');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Render Functions
+        function renderAll() {
+            renderPlans();
+            renderFaqs();
+            renderCountries();
+            renderOS();
+            renderSettings();
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('totalPlans').textContent = plans.length;
+            document.getElementById('totalFAQs').textContent = faqs.length;
+            document.getElementById('totalCountries').textContent = countries.length;
+            document.getElementById('totalOS').textContent = operatingSystems.length;
+        }
+
+        function renderPlans() {
+            const tbody = document.getElementById('plansTable');
+            tbody.innerHTML = plans.map(plan => `
+                <tr>
+                    <td><strong>${plan.name_ar}</strong><br><small style="color:var(--muted)">${plan.name}</small></td>
+                    <td>$${plan.price}</td>
+                    <td>${plan.cpu_cores}</td>
+                    <td>${plan.ram_gb}GB</td>
+                    <td>${plan.storage_gb}GB</td>
+                    <td>${plan.is_featured ? '<span class="badge badge-warning">مميز</span>' : '<span class="badge badge-success">نشط</span>'}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn edit-btn" onclick="editPlan(${plan.id})">✏️</button>
+                            <button class="action-btn delete-btn" onclick="deletePlan(${plan.id})">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderFaqs() {
+            const tbody = document.getElementById('faqTable');
+            const categories = {general: 'عام', billing: 'الفوترة', technical: 'تقني', security: 'الأمان'};
+            tbody.innerHTML = faqs.map(faq => `
+                <tr>
+                    <td><strong>${faq.question_ar}</strong><br><small style="color:var(--muted)">${faq.question}</small></td>
+                    <td><span class="badge badge-info">${categories[faq.category]}</span></td>
+                    <td>${faq.active ? '<span class="badge badge-success">نشط</span>' : '<span class="badge badge-warning">متوقف</span>'}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn edit-btn" onclick="editFaq(${faq.id})">✏️</button>
+                            <button class="action-btn delete-btn" onclick="deleteFaq(${faq.id})">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderCountries() {
+            const tbody = document.getElementById('countriesTable');
+            const types = {standard: 'Standard', popular: 'شائع', premium: 'Premium'};
+            tbody.innerHTML = countries.map(c => `
+                <tr>
+                    <td style="font-size: 24px;">${c.flag}</td>
+                    <td><strong>${c.name_ar}</strong><br><small style="color:var(--muted)">${c.name}</small></td>
+                    <td>${c.speed_ar}</td>
+                    <td><span class="badge badge-info">${types[c.type]}</span></td>
+                    <td>${c.enabled ? '<span class="badge badge-success">متاح</span>' : '<span class="badge badge-warning">غير متاح</span>'}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn edit-btn" onclick="editCountry(${c.id})">✏️</button>
+                            <button class="action-btn delete-btn" onclick="deleteCountry(${c.id})">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderOS() {
+            const tbody = document.getElementById('osTable');
+            tbody.innerHTML = operatingSystems.map(os => `
+                <tr>
+                    <td style="font-size: 20px;">${os.icon}</td>
+                    <td><strong>${os.name}</strong><br><small style="color:var(--muted)">${os.description}</small></td>
+                    <td><span class="badge badge-info">${os.category === 'windows' ? 'Windows' : 'Linux'}</span></td>
+                    <td>${os.popular ? '<span class="badge badge-warning">شائع</span>' : '-'}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="action-btn edit-btn" onclick="editOS(${os.id})">✏️</button>
+                            <button class="action-btn delete-btn" onclick="deleteOS(${os.id})">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderSettings() {
+            document.getElementById('siteName').value = settings.site_name || '';
+            document.getElementById('siteUrl').value = settings.site_url || '';
+            document.getElementById('supportEmail').value = settings.support_email || '';
+            document.getElementById('telegramUsername').value = settings.telegram_username || '';
+            document.getElementById('currencyRate').value = settings.currency_rate || 50;
+            document.getElementById('formspreeId').value = settings.formspree_id || '';
+        }
+
+        // Plan CRUD
+        function savePlan(e) {
+            e.preventDefault();
+            const id = document.getElementById('planId').value;
+            const planData = {
+                id: id ? parseInt(id) : Date.now(),
+                name: document.getElementById('planName').value,
+                name_ar: document.getElementById('planNameAr').value,
+                description: document.getElementById('planDesc').value,
+                description_ar: document.getElementById('planDescAr').value,
+                price: parseFloat(document.getElementById('planPrice').value),
+                cpu_cores: parseInt(document.getElementById('planCpu').value),
+                ram_gb: parseInt(document.getElementById('planRam').value),
+                storage_gb: parseInt(document.getElementById('planStorage').value),
+                port_speed: document.getElementById('planSpeed').value,
+                is_featured: document.getElementById('planFeatured').checked,
+                is_active: true,
+                display_order: plans.length + 1,
+                bandwidth: 'Unlimited',
+                storage_type: 'NVMe'
+            };
+
+            if (id) {
+                const idx = plans.findIndex(p => p.id === parseInt(id));
+                plans[idx] = planData;
+            } else {
+                plans.push(planData);
+            }
+            savePlans();
+            renderPlans();
+            updateStats();
+            closeModal('planModal');
+            document.getElementById('planForm').reset();
+        }
+
+        function editPlan(id) {
+            const plan = plans.find(p => p.id === id);
+            document.getElementById('planId').value = plan.id;
+            document.getElementById('planName').value = plan.name;
+            document.getElementById('planNameAr').value = plan.name_ar;
+            document.getElementById('planDesc').value = plan.description;
+            document.getElementById('planDescAr').value = plan.description_ar;
+            document.getElementById('planPrice').value = plan.price;
+            document.getElementById('planCpu').value = plan.cpu_cores;
+            document.getElementById('planRam').value = plan.ram_gb;
+            document.getElementById('planStorage').value = plan.storage_gb;
+            document.getElementById('planSpeed').value = plan.port_speed;
+            document.getElementById('planFeatured').checked = plan.is_featured;
+            document.getElementById('planModalTitle').textContent = 'تعديل الخطة';
+            openModal('planModal');
+        }
+
+        function deletePlan(id) {
+            if (confirm('هل تريد حذف هذه الخطة؟')) {
+                plans = plans.filter(p => p.id !== id);
+                savePlans();
+                renderPlans();
+                updateStats();
+            }
+        }
+
+        // FAQ CRUD
+        function saveFaq(e) {
+            e.preventDefault();
+            const id = document.getElementById('faqId').value;
+            const faqData = {
+                id: id ? parseInt(id) : Date.now(),
+                category: document.getElementById('faqCategory').value,
+                question: document.getElementById('faqQuestion').value,
+                question_ar: document.getElementById('faqQuestionAr').value,
+                answer: document.getElementById('faqAnswer').value,
+                answer_ar: document.getElementById('faqAnswerAr').value,
+                active: true,
+                order: faqs.length + 1
+            };
+
+            if (id) {
+                const idx = faqs.findIndex(f => f.id === parseInt(id));
+                faqs[idx] = faqData;
+            } else {
+                faqs.push(faqData);
+            }
+            saveFaqs();
+            renderFaqs();
+            updateStats();
+            closeModal('faqModal');
+            document.getElementById('faqForm').reset();
+        }
+
+        function editFaq(id) {
+            const faq = faqs.find(f => f.id === id);
+            document.getElementById('faqId').value = faq.id;
+            document.getElementById('faqCategory').value = faq.category;
+            document.getElementById('faqQuestion').value = faq.question;
+            document.getElementById('faqQuestionAr').value = faq.question_ar;
+            document.getElementById('faqAnswer').value = faq.answer;
+            document.getElementById('faqAnswerAr').value = faq.answer_ar;
+            document.getElementById('faqModalTitle').textContent = 'تعديل السؤال';
+            openModal('faqModal');
+        }
+
+        function deleteFaq(id) {
+            if (confirm('هل تريد حذف هذا السؤال؟')) {
+                faqs = faqs.filter(f => f.id !== id);
+                saveFaqs();
+                renderFaqs();
+                updateStats();
+            }
+        }
+
+        // Country CRUD
+        function saveCountry(e) {
+            e.preventDefault();
+            const id = document.getElementById('countryId').value;
+            const countryData = {
+                id: id ? parseInt(id) : Date.now(),
+                name: document.getElementById('countryName').value,
+                name_ar: document.getElementById('countryNameAr').value,
+                code: document.getElementById('countryCode').value,
+                type: document.getElementById('countryType').value,
+                enabled: document.getElementById('countryEnabled').checked,
+                flag: '🏳️',
+                speed: 'Standard',
+                speed_ar: 'متوسط',
+                display_order: countries.length + 1
+            };
+
+            if (id) {
+                const idx = countries.findIndex(c => c.id === parseInt(id));
+                countries[idx] = countryData;
+            } else {
+                countries.push(countryData);
+            }
+            saveCountries();
+            renderCountries();
+            updateStats();
+            closeModal('countryModal');
+            document.getElementById('countryForm').reset();
+        }
+
+        function editCountry(id) {
+            const country = countries.find(c => c.id === id);
+            document.getElementById('countryId').value = country.id;
+            document.getElementById('countryName').value = country.name;
+            document.getElementById('countryNameAr').value = country.name_ar;
+            document.getElementById('countryCode').value = country.code;
+            document.getElementById('countryType').value = country.type;
+            document.getElementById('countryEnabled').checked = country.enabled;
+            document.getElementById('countryModalTitle').textContent = 'تعديل الموقع';
+            openModal('countryModal');
+        }
+
+        function deleteCountry(id) {
+            if (confirm('هل تريد حذف هذا الموقع؟')) {
+                countries = countries.filter(c => c.id !== id);
+                saveCountries();
+                renderCountries();
+                updateStats();
+            }
+        }
+
+        // OS CRUD
+        function saveOS(e) {
+            e.preventDefault();
+            const id = document.getElementById('osId').value;
+            const osData = {
+                id: id ? parseInt(id) : Date.now(),
+                name: document.getElementById('osName').value,
+                category: document.getElementById('osCategory').value,
+                description: document.getElementById('osDesc').value,
+                description_ar: document.getElementById('osDescAr').value,
+                popular: document.getElementById('osPopular').checked,
+                icon: document.getElementById('osCategory').value === 'windows' ? '🪟' : '🐧'
+            };
+
+            if (id) {
+                const idx = operatingSystems.findIndex(o => o.id === parseInt(id));
+                operatingSystems[idx] = osData;
+            } else {
+                operatingSystems.push(osData);
+            }
+            saveOS();
+            renderOS();
+            updateStats();
+            closeModal('osModal');
+            document.getElementById('osForm').reset();
+        }
+
+        function editOS(id) {
+            const os = operatingSystems.find(o => o.id === id);
+            document.getElementById('osId').value = os.id;
+            document.getElementById('osName').value = os.name;
+            document.getElementById('osCategory').value = os.category;
+            document.getElementById('osDesc').value = os.description;
+            document.getElementById('osDescAr').value = os.description_ar;
+            document.getElementById('osPopular').checked = os.popular;
+            document.getElementById('osModalTitle').textContent = 'تعديل النظام';
+            openModal('osModal');
+        }
+
+        function deleteOS(id) {
+            if (confirm('هل تريد حذف هذا النظام؟')) {
+                operatingSystems = operatingSystems.filter(o => o.id !== id);
+                saveOS();
+                renderOS();
+                updateStats();
+            }
+        }
+
+        // Settings
+        function updateSetting(key, value) {
+            settings[key] = value;
+            saveSettings();
+        }
+
+        // Reset modal titles on close
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('planModalTitle').textContent = 'إضافة خطة جديدة';
+                document.getElementById('faqModalTitle').textContent = 'إضافة سؤال جديد';
+                document.getElementById('countryModalTitle').textContent = 'إضافة موقع جديد';
+                document.getElementById('osModalTitle').textContent = 'إضافة نظام جديد';
+                document.getElementById('planForm').reset();
+                document.getElementById('faqForm').reset();
+                document.getElementById('countryForm').reset();
+                document.getElementById('osForm').reset();
+            });
+        });
+    </script>
+</body>
+</html>
